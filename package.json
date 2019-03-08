@@ -10,6 +10,7 @@
   },
   "heroku-run-build-script": true,
   "dependencies": {
+    "express": "^4.16.4",
     "vue": "^2.6.6"
   },
   "devDependencies": {
