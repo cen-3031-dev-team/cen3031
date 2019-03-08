@@ -5,9 +5,9 @@
   "scripts": {
     "serve": "npm run serve",
     "build": "npm run build",
-    "start": "npm run build",
     "lint": "npm run lint"
   },
+  "heroku-run-build-script": true,
   "dependencies": {
     "vue": "^2.6.6"
   },
