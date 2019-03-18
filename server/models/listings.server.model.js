@@ -4,19 +4,14 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var listingSchema = new Schema({
-  name: {
+  email: {
     type: String, 
-    required: true
-  }, 
-  code: {
-    type: String, 
-    required: true, 
+    required: true,
     unique: true
   }, 
-  address: String, 
-  coordinates: {
-    latitude: Number, 
-    longitude: Number
+  password: {
+    type: String, 
+    required: true, 
   },
   created_at: Date,
   updated_at: Date

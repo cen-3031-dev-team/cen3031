@@ -2,17 +2,7 @@
 /* Dependencies */
 var mongoose = require('mongoose'), 
     Listing = require('../models/listings.server.model.js');
-
-/*
-  In this file, you should use Mongoose queries in order to retrieve/add/remove/update listings.
-  On an error you should send a 404 status code, as well as the error message. 
-  On success (aka no error), you should send the listing(s) as JSON in the response.
-
-  HINT: if you are struggling with implementing these functions, refer back to this tutorial 
-  from assignment 3 https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
- */
-
-/* Create a listing */
+/* Create a user */
 exports.create = function(req, res) {
 
   /* Instantiate a Listing */
@@ -30,13 +20,24 @@ exports.create = function(req, res) {
   });
 };
 
-/* Show the current listing */
+/* Validate user */
 exports.read = function(req, res) {
-  /* send back the listing as json from the request */
-  res.json(req.listing);
+  Listing.findById(req.listing.email).exec(function(err, listing) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      if(req.listing.password = listing.password)
+      {
+        res.send("Valid");
+      }else{
+        res.send("Invald");
+      }
+      next();
+    }
+  });
 };
 
-/* Update a listing */
+/* Update a listing 
 exports.update = function(req, res) {
   var listing = req.listing;
   listing.name = req.body.name;
@@ -51,12 +52,8 @@ exports.update = function(req, res) {
       res.json(listing);
     }
   });
-  /** TODO **/
-  /* Replace the article's properties with the new properties found in req.body */
-  /* Save the article */
 };
 
-/* Delete a listing */
 exports.delete = function(req, res) {
   var listing = req.listing;
   listing.remove(function(err)
@@ -70,10 +67,9 @@ exports.delete = function(req, res) {
     }
   }); 
   /** TODO **/
-  /* Remove the article */
+  /* Remove the article 
 };
 
-/* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
   Listing.find({}).sort('code').exec(function(err, users)
   {
@@ -94,7 +90,7 @@ exports.list = function(req, res) {
   Find the listing using a mongoose query, 
         bind it to the request object as the property 'listing', 
         then finally call next
- */
+ 
 exports.listingByID = function(req, res, next, id) {
   Listing.findById(id).exec(function(err, listing) {
     if(err) {
@@ -105,3 +101,4 @@ exports.listingByID = function(req, res, next, id) {
     }
   });
 };
+*/
