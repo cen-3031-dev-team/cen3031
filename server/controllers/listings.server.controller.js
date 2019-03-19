@@ -21,7 +21,7 @@ exports.create = function(req, res) {
 };
 
 /* Validate user */
-exports.read = function(req, res) {
+exports.validatePassword = function(req, res) {
   Listing.findById(req.listing.email).exec(function(err, listing) {
     if(err) {
       res.status(400).send(err);
