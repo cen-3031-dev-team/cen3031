@@ -1,15 +1,25 @@
 const express = require('express');
-const postRoutes = express.Router();
+const accountRoutes = express.Router();
 
-// Require Post model in our routes module
-let Post = require('../models/post.model');
+// Require Account model in our routes module
+let Account = require('../models/accounts.model');
 
 // Defined store route
-postRoutes.route('/add').post(function (req, res) {
-  let post = new Post(req.body);
-  post.save()
+accountRoutes.route('/add').post(function (req, res) {
+  let account = new Account(req.body);
+  /*
+  Account.find(function(err, accounts){
+    if(err){
+      res.json(err);
+    }
+    else {
+      res.json(posts);
+    }
+  });
+  */
+  account.save()
     .then(() => {
-      res.status(200).json({'business': 'business in added successfully'});
+      res.status(200).json({'user': 'new user added successfully'});
     })
     .catch(() => {
       res.status(400).send("unable to save to database");
@@ -17,8 +27,8 @@ postRoutes.route('/add').post(function (req, res) {
 });
 
 // Defined get data(index or listing) route
-postRoutes.route('/').get(function (req, res) {
-    Post.find(function(err, posts){
+accountRoutes.route('/validate').get(function (req, res) {
+    Account.find(function(err, accounts){
     if(err){
       res.json(err);
     }
@@ -27,7 +37,7 @@ postRoutes.route('/').get(function (req, res) {
     }
   });
 });
-
+/*
 // Defined edit route
 postRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
@@ -64,5 +74,5 @@ postRoutes.route('/delete/:id').delete(function (req, res) {
         else res.json('Successfully removed');
     });
 });
-
-module.exports = postRoutes;
+*/
+module.exports = accountRoutes;

@@ -1,21 +1,21 @@
 <template>
   <div>
-    <h1>Create A Post</h1>
-    <form @submit.prevent="addPost">
+    <h1>Make a New Account</h1>
+    <form @submit.prevent="addAccount">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>Post Title:</label>
-            <input type="text" class="form-control" v-model="post.title">
+            <label>Email:</label>
+            <input type="text" class="form-control" v-model="account.email">
           </div>
         </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label>Post Body:</label>
-              <textarea class="form-control" v-model="post.body" rows="5"></textarea>
-            </div>
+               <label>Password:</label>
+            <input type="text" class="form-control" v-model="account.password">
+          </div>
           </div>
         </div><br />
         <div class="form-group">
@@ -29,14 +29,14 @@
     export default {
         data(){
         return {
-          post:{}
+          account:{}
         }
     },
     methods: {
-      addPost(){
-        let uri = 'http://localhost:4000/posts/add';
-        this.axios.post(uri, this.post).then(() => {
-          this.$router.push({name: 'posts'});
+      addAccount(){
+        let uri = 'http://localhost:4000/accounts/add';
+        this.axios.post(uri, this.account).then(() => {
+          this.$router.push({name: 'account'});
         });
       }
     }
