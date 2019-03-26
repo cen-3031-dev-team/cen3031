@@ -7,30 +7,27 @@ let Account = require('../models/accounts.model');
 // Defined store route
 accountRoutes.route('/add').post(function (req, res) {
   let account = new Account(req.body);
-  /*
-  Account.find(function(err, accounts){
+  Account.findOne({email: req.email}, function(err, accounts){
     if(err){
-      res.json(err);
+      res.status(400).send("Account already exists with this email.");
     }
     else {
-      res.json(posts);
+      account.save()
+      .then(() => {
+        res.status(200).json({'user': 'New user added successfully.'});
+      })
+      .catch(() => {
+        res.status(400).send("Unable to save to database.");
+      });
     }
   });
-  */
-  account.save()
-    .then(() => {
-      res.status(200).json({'user': 'new user added successfully'});
-    })
-    .catch(() => {
-      res.status(400).send("unable to save to database");
-    });
 });
 
 // Defined get data(index or listing) route
 accountRoutes.route('/validate').get(function (req, res) {
-    Account.find(function(err, accounts){
+    Account.findOne({email: req.email}, function(err, accounts){
     if(err){
-      res.json(err);
+      res.status(400).send("User does not exist.");
     }
     else {
       res.json(posts);

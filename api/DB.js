@@ -1,5 +1,5 @@
 require('dotenv').config()
 
 module.exports = {
-    DB: 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@ds147003.mlab.com:47003/mwbootcamp3'
+    DB: 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@cluster0-3ejvn.mongodb.net/test?retryWrites=true'
 }
