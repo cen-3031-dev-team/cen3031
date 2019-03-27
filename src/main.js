@@ -19,8 +19,8 @@ import EditComponent from './components/EditComponent.vue';
 
 const routes = [
   {
-      name: 'home',
-      path: '/',
+      name: 'login',
+      path: '/login',
       component: HomeComponent
   },
   {

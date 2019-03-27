@@ -3,10 +3,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
+          <router-link to="/login" class="nav-link">Login</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/create" class="nav-link">Create Post</router-link>
+          <router-link to="/create" class="nav-link">Make Account</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/posts" class="nav-link">Posts</router-link>
