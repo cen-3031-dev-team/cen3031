@@ -26,7 +26,10 @@
         Woah, there are tweets now! Cool.
 
         <ul>
-            <li v-for="tweet in tweets.statuses"> {{ tweet.possibly_sensitive }} </li>
+            <li v-for="tweet in tweets.statuses">
+                <span v-if="tweet.possibly_sensitive == true">Woah, might not wanna look here</span>
+                <span v-else>This one is safe to look at.</span>
+            </li>
         </ul>
     </div>
     
@@ -72,7 +75,7 @@ export default
 
     mounted()
     {
-        // ...
+        this.getTweets()
     },
 
     methods: 
@@ -81,6 +84,7 @@ export default
         getTweets()
         {
             const self = this
+            self.tweets = null
 
             // @TODO: make this go to the api correctly
             this.$http.get('//localhost:4000/twitter/getTweets').then(function (response)
