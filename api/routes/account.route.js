@@ -53,14 +53,17 @@ accountRoutes.route('/validate').post(function (req, res)
         {
             if (accounts != null)
             {
-                if(accounts.password = account.password)
-                {
-                    res.status(200).send("Validation successful.")
-                }
-                else
-                {
-                    res.status(200).send("Validation unsuccessful.")
-                }
+                accounts.comparePassword(account.password, function(err, isMatch) {
+                    if (err) throw err;
+                    if(isMatch)
+                    {
+                        res.status(200).send("Validation successful.")
+                    }
+                    else
+                    {
+                        res.status(200).send("Validation unsuccessful.")
+                    }
+                });
             }
             else
             {
