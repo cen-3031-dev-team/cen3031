@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "node server.js",
+    "start": "./api/node_modules/nodemon/bin/nodemon.js ./api/server.js",
     "lint": "vue-cli-service lint"
   },
   "heroku-run-build-script": true,
