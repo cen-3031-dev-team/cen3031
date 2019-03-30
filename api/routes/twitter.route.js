@@ -18,12 +18,12 @@ twitterRoutes.route('/searchTweets').get(function (req, res)
     
     //Create q parameter
    // var q = req.body.q + 'since:' +  moment().subtract(req.body.since, 'days').calendar().format(YYYY-MM-Do);
-    var query = req.body.query + " since:" +  moment().subtract(req.body.since, 'days').format('YYYY-MM-DD') + " tweet_mode=extended";
+    var query = req.body.query + " since:" +  moment().subtract(req.body.since, 'days').format('YYYY-MM-DD');
     // search twitter for all tweets containing the word 'banana' since 2019-03-25
     
     T.get(
         'search/tweets',
-        { q: query, count: req.body.count},
+        { q: query, count: req.body.count, tweet_mode: "extended"},
         function(err, data, response)
         {
             console.log(data)
