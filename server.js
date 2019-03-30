@@ -1,3 +1,3 @@
 // server.js
-var app = require('./server/config/app');
-var server = app.start();
+var app = require('./api/app.js');
+var server = app.init();

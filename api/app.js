@@ -6,6 +6,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./DB.js')
 
+module.exports.init = function() {
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => { console.log('Database is connected') },
@@ -28,4 +29,5 @@ app.listen(PORT, function(){
     console.log('Server is running on Port:',PORT)
 })
 
-module.exports = app;
+return app;
+}

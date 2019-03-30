@@ -1,6 +1,6 @@
 var should = require('should'), 
     request = require('supertest');
-    express = require('../server.js');
+    express = require('../app.js');
     //users = require('../models/account.model.js');
 
 /* Global variables */
@@ -22,8 +22,8 @@ describe('Listings CRUD tests', function() {
   this.timeout(10000);
 
   before(function(done) {
-    agent = request.agent(express.app);
-
+    app = express.init();
+    agent = request.agent(app);
     done();
   });
 
