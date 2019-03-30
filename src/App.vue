@@ -26,9 +26,8 @@
         Woah, there are tweets now! Cool.
 
         <ul>
-            <li v-for="tweet in tweets.statuses">
-                <span v-if="tweet.possibly_sensitive" class="text-warn">Woah, might not wanna look here</span>
-                <span v-else>{{ tweet.text }}</span>
+            <li v-for="tweet in safeTweets">
+                {{ tweet.text }}
             </li>
         </ul>
     </div>
