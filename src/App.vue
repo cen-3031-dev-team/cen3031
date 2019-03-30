@@ -13,6 +13,10 @@
             <li class="nav-item">
                 <router-link to="/posts" class="nav-link">Posts</router-link>
             </li>
+
+            <li class="nav-item">
+                <router-link to="/graphs" class="nav-link">Graphs</router-link>
+            </li>
         </ul>
     </nav><br />
 
