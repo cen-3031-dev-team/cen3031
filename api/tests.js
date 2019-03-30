@@ -1,7 +1,6 @@
 var should = require('should'), 
     request = require('supertest');
-    express = require('../app.js');
-    //users = require('../models/account.model.js');
+    express = require('./app.js');
 
 /* Global variables */
 var user;
@@ -26,7 +25,7 @@ describe('Listings CRUD tests', function() {
     agent = request.agent(app);
     done();
   });
-
+  //console.log("send(help)")
   it('should it able to add account', function(done) {
     user = {email : makeid(10), password : makeid(10)};
     agent.post('/accounts/add').send(user)
@@ -34,7 +33,7 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        res.body.should.be("New user added successfully.");
+        res.body.should.be.equal('New user added successfully.');
         done();
       });
   });
@@ -44,7 +43,7 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        res.body.should.be("Validation successful.");
+        res.body.should.be.equal('Validation successful.');
         done();
       });
   });
