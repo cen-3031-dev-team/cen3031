@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
+import VueAxios from 'vue-axios'
+import Axios from 'axios'
+import VueLodash from 'vue-lodash'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
+Vue.use(VueLodash)
+Vue.use(VueAxios, Axios)
+Vue.use(VueRouter)
 
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-
-Vue.use(VueAxios, axios);
-
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 import HomeComponent from './components/HomeComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';

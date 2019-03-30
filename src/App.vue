@@ -27,8 +27,8 @@
 
         <ul>
             <li v-for="tweet in tweets.statuses">
-                <span v-if="tweet.possibly_sensitive == true">Woah, might not wanna look here</span>
-                <span v-else>This one is safe to look at.</span>
+                <span v-if="tweet.possibly_sensitive" class="text-warn">Woah, might not wanna look here</span>
+                <span v-else>{{ tweet.text }}</span>
             </li>
         </ul>
     </div>
@@ -71,6 +71,20 @@ export default
         {
             return this.tweets != null
         },
+
+        safeTweets()
+        {
+            if (this.hasTweets)
+            {
+                return _.filter(this.tweets.statuses, function(tweet) {
+                    return tweet.possibly_sensitive == true
+                })
+            }
+            else
+            {
+                return null
+            }
+        },
     },
 
     mounted()
@@ -87,12 +101,10 @@ export default
             self.tweets = null
 
             // @TODO: make this go to the api correctly
-            this.$http.get('//localhost:4000/twitter/getTweets').then(function (response)
+            this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
             {
                 if (response.status == "200")
                 {
-                    console.log(response)
-
                     self.tweets = response.data
                 }
           })
