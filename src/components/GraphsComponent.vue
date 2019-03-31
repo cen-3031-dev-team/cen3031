@@ -9,12 +9,18 @@
 <script>
 import Highcharts from 'highcharts'
     export default {
+        props: 
+        {
+            tweets:
+            {
+                default: [],
+            },
+        },
 
         data()
         {
-            return
-            {
-                tweets: null
+            return {
+                // ...
             }
         },
 
@@ -37,23 +43,23 @@ import Highcharts from 'highcharts'
         {
             getData()
             {
-                const self = this
-                self.tweets = null
-
-
-                // create json to request
-
-                // send request to the API
-
-                // @TODO: make this go to the api correctly and get data back
-
-                this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
-                {
-                    if (response.status == "200")
-                    {
-                        self.tweets = response.data
-                    }
-                })
+                // const self = this
+                // self.tweets = null
+                // 
+                // 
+                // // create json to request
+                // 
+                // // send request to the API
+                // 
+                // // @TODO: make this go to the api correctly and get data back
+                // 
+                // this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
+                // {
+                //     if (response.status == "200")
+                //     {
+                //         self.tweets = response.data
+                //     }
+                // })
             },
 
             setupGraph()

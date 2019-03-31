@@ -24,6 +24,10 @@
         <router-view></router-view>
     </transition>
 
+    <graph
+        :tweets="safeTweets"
+    ></graph>
+
     <button class="btn btn-primary" @click="getTweets">Click me to get tweets!</button>
 
     <div v-if="hasTweets">
@@ -80,7 +84,7 @@ export default
             if (this.hasTweets)
             {
                 return this._.filter(this.tweets.statuses, function(tweet) {
-                    return tweet.possibly_sensitive == true
+                    return tweet.possibly_sensitive == false
                 })
             }
             else

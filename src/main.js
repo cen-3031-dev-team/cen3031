@@ -20,6 +20,8 @@ import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
 import GraphsComponent from './components/GraphsComponent.vue';
 
+Vue.component('graph', GraphsComponent)
+
 const routes = [
   {
       name: 'login',
