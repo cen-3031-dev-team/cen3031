@@ -26,21 +26,18 @@
     </div>
     <div class="col-md-1">
       <multiselect v-model="querytweets" :options="numOfTweets" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="#"></multiselect>
-      <pre class="language-json"><code>{{ querytweets  }}</code></pre>
     </div>
     <div class="col-md-2" id="searchtext">
       most popular Tweets about
     </div>
     <div class="col-md-2">
       <input type="text" placeholder="Search..">
-      <pre class="language-json"><code>{{ querystring  }}</code></pre>
     </div>
     <div class="col-md-2" id="searchtext">
       in the last
     </div>
     <div class="col-md-1">
       <multiselect v-model="querydays" :options="numOfDays" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="#"></multiselect>
-      <pre class="language-json"><code>{{ querydays  }}</code></pre>
     </div>
     <div class="col-md-2" id="searchtext">
       Days
@@ -162,8 +159,6 @@ export default {
       // @TODO: make this go to the api correctly
       this.$http.get('//localhost:4000/twitter/searchTweets').then(function(response) {
         if (response.status == "200") {
-          console.log(response)
-
           self.tweets = response.data
         }
       })
