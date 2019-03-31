@@ -21,30 +21,34 @@
   </transition>
 
   <div class="row">
-    <div class="col-lg-12">
-      <h4>
-        Display the
-        <div>
-          <multiselect v-model="querytweets" :options="numOfTweets" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="# Tweets"></multiselect>
-          <pre class="language-json"><code>{{ querytweets  }}</code></pre>
-        </div>
-        most popular Tweets about
-        <div>
-        <input type="text" placeholder="Search..">
-        <pre class="language-json"><code>{{ querystring  }}</code></pre>
-        </div>
-        in the last
-        <div>
-          <multiselect v-model="querydays" :options="numOfDays" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="# of Days"></multiselect>
-          <pre class="language-json"><code>{{ querydays  }}</code></pre>
-        </div>
-        Days
-      </h4>
+    <div class="col-md-2" id="searchtext">
+      Display the
+    </div>
+    <div class="col-md-1">
+      <multiselect v-model="querytweets" :options="numOfTweets" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="#"></multiselect>
+      <pre class="language-json"><code>{{ querytweets  }}</code></pre>
+    </div>
+    <div class="col-md-2" id="searchtext">
+      most popular Tweets about
+    </div>
+    <div class="col-md-2">
+      <input type="text" placeholder="Search..">
+      <pre class="language-json"><code>{{ querystring  }}</code></pre>
+    </div>
+    <div class="col-md-2" id="searchtext">
+      in the last
+    </div>
+    <div class="col-md-1">
+      <multiselect v-model="querydays" :options="numOfDays" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="#"></multiselect>
+      <pre class="language-json"><code>{{ querydays  }}</code></pre>
+    </div>
+    <div class="col-md-2" id="searchtext">
+      Days
     </div>
   </div></br>
 
   <div class="row">
-    <div class="col-lg-12" id='searchButton'>
+    <div class="col-lg-12" id='searchtext'>
       <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
       </br>
     </div>
@@ -54,12 +58,16 @@
     </br>
     <ul>
       <li v-for="tweet in tweets.statuses">
-        <div class="tweet">
-          <img :src="tweet.user.profile_image_url">
-          <span> @{{ tweet.user.screen_name }}: {{ tweet.text }} </br></span>
-          <span> Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}</span>
-          </br>
+        <div class="row">
+          <div class="tweet">
+            <img :src="tweet.user.profile_image_url">
+            <span> @{{ tweet.user.screen_name }}: {{ tweet.text }} </br></span>
+          </div>
         </div>
+        <div class="row">
+          <span id="tweetleft"> Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}</span>
+        </div>
+      </br>
       </li>
     </ul>
   </div>
@@ -77,34 +85,26 @@
   opacity: 0
 }
 
-body {
-  background-color: #333;
-  font-family: helvetica, sans-serif;
-}
-
-h4 {
+#searchtext {
   text-align: center;
-  color: black;
+  font-size: 20px;
 }
-
-.searchButton {
+#searchbutton{
   text-align: center;
+}
+#tweetrow{
+  margin-bottom: 10px;
+  background-color: lightblue;
 }
 
 .tweet {
   margin-bottom: 10px;
-  border: 10px;
-  border-color: lightblue;
   width: 100%;
   display: flex;
   height: 100px;
   align-items: center;
   color: black;
   background-color: lightblue;
-}
-
-.tweet h5 {
-  display: grid;
 }
 
 .name {
@@ -138,8 +138,8 @@ export default {
       querydays: null,
       querytweets: null,
       querystring: null,
-      numOfDays: ['1', '2', '3', '4','5','6','7'],
-      numOfTweets: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
+      numOfDays: ['1', '2', '3', '4', '5', '6', '7'],
+      numOfTweets: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
     }
   },
 
