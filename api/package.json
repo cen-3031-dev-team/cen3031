@@ -15,10 +15,11 @@
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "highcharts": "^7.0.3",
-    "highcharts-vue": "^1.2.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.3.13",
     "nodemon": "^1.18.10",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2",
     "twit": "^2.2.11"
   }
 }

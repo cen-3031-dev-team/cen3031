@@ -23,7 +23,7 @@ accountRoutes.route('/add').post(function (req, res)
                 account.save()
                 .then(() =>
                 {
-                    res.status(200).json({'user': 'New user added successfully.'})
+                    res.status(200).send("New user added successfully.")
                 })
                 .catch(() =>
                 {

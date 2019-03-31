@@ -30,7 +30,7 @@
         Woah, there are tweets now! Cool.
 
         <ul>
-            <li v-for="tweet in safeTweets">
+            <li v-for="tweet in safeTweets" :key="tweet.id">
                 {{ tweet.text }}
             </li>
         </ul>
@@ -79,7 +79,7 @@ export default
         {
             if (this.hasTweets)
             {
-                return _.filter(this.tweets.statuses, function(tweet) {
+                return this._.filter(this.tweets.statuses, function(tweet) {
                     return tweet.possibly_sensitive == true
                 })
             }
