@@ -1,9 +1,8 @@
 
-<template>
+<script src = "https://code.highcharts.com/modules/data.js"></script> 
 
-  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
-  </div>
-    
+<template>
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> 
 </template>
 
 <script>
@@ -48,11 +47,9 @@ import Highcharts from 'highcharts'
                             minWidth: 700
                         }
                     },
-                    
-                    data: self.tweets,
 
                     title: {
-                        text: 'Daily Twitter metrics for x'
+                        text: 'Daily Twitter metrics for _ over _ days'
                     },
 
                     subtitle: {
@@ -60,6 +57,10 @@ import Highcharts from 'highcharts'
                     },
 
                     xAxis: {
+                        type: 'datetime',
+                        title: {
+                            text: 'Past _ days'
+                        },
                         tickInterval: 24 * 3600 * 1000, // one day
                         tickWidth: 0,
                         gridLineWidth: 1,
@@ -70,9 +71,9 @@ import Highcharts from 'highcharts'
                         }
                     },
 
-                    yAxis: [{ // left y axis
+                    yAxis: [{ 
                         title: {
-                            text: null
+                            text: 'Number of tweets, likes, retweets'
                         },
                         labels: {
                             align: 'left',
@@ -81,20 +82,7 @@ import Highcharts from 'highcharts'
                             format: '{value:.,0f}'
                         },
                         showFirstLabel: false
-                    }, { // right y axis
-                        linkedTo: 0,
-                        gridLineWidth: 0,
-                        opposite: true,
-                        title: {
-                            text: null
-                        },
-                        labels: {
-                            align: 'right',
-                            x: -3,
-                            y: 16,
-                            format: '{value:.,0f}'
-                        },
-                        showFirstLabel: false
+                      
                     }],
 
                     legend: {
@@ -109,38 +97,35 @@ import Highcharts from 'highcharts'
                     },
 
                     plotOptions: {
-                        series: {
-                            cursor: 'pointer',
-                            point: {
-                                /* events: {
-                                    click: function (e) {
-                                         hs.htmlExpand(null, {
-                                            pageOrigin: {
-                                                x: e.pageX || e.clientX,
-                                                y: e.pageY || e.clientY
-                                            },
-                                            headingText: this.series.name,
-                                            maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
-                                                this.y + ' sessions',
-                                            width: 200
-                                        }); 
-                                    }
-                                } */
-                            }, 
-                            marker: {
-                                lineWidth: 1
-                            }
-                        }
-                    },
-
-                    series: [{
-                        name: 'All sessions',
                         lineWidth: 4,
                         marker: {
                             radius: 4
                         }
+                    },
+
+                    series: [{
+                        name: 'Tweets',
+                        data: [
+                            [Date.UTC(2019, 1, 1), 39],
+                            [Date.UTC(2019, 1, 2), 71],
+                            [Date.UTC(2019, 1, 3), 106]
+                        ]
                     }, {
-                        name: 'New users'
+                        name: 'Likes',
+                        color: '#FF0000',
+                        data: [
+                            [Date.UTC(2019, 1, 1), 22],
+                            [Date.UTC(2019, 1, 2), 30],
+                            [Date.UTC(2019, 1, 3), 25]
+                        ]
+                    }, {
+                        name: 'Retweets',
+                        color: 'green',
+                        data: [
+                            [Date.UTC(2019, 1, 1), 14],
+                            [Date.UTC(2019, 1, 2), 45],
+                            [Date.UTC(2019, 1, 3), 2]
+                        ]
                     }]
                 });
             },
