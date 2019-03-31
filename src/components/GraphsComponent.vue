@@ -31,39 +31,14 @@ import Highcharts from 'highcharts'
 
         mounted()
         {
-            this.getData()
-
             this.setupGraph()
         },
 
-        // query, count, since
-        // /twitter/searchTweets
-
         methods:
         {
-            getData()
-            {
-                // const self = this
-                // self.tweets = null
-                // 
-                // 
-                // // create json to request
-                // 
-                // // send request to the API
-                // 
-                // // @TODO: make this go to the api correctly and get data back
-                // 
-                // this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
-                // {
-                //     if (response.status == "200")
-                //     {
-                //         self.tweets = response.data
-                //     }
-                // })
-            },
-
             setupGraph()
             {
+
                 const self = this
 
                 Highcharts.chart('container', {
@@ -73,8 +48,8 @@ import Highcharts from 'highcharts'
                             minWidth: 700
                         }
                     },
-
-                    data: self.data,
+                    
+                    data: self.tweets,
 
                     title: {
                         text: 'Daily Twitter metrics for x'
