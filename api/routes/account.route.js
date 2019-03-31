@@ -9,7 +9,7 @@ let Account = require('../models/accounts.model')
 accountRoutes.route('/add').post(function (req, res)
 {
     let account = new Account(req.body)
-
+    
     Account.findOne({email: account.email}, function(err, accounts)
     {
         if (err)
@@ -18,12 +18,12 @@ accountRoutes.route('/add').post(function (req, res)
         }
         else
         {
-            if (accounts = null)
+            if (!accounts)
             {
                 account.save()
                 .then(() =>
                 {
-                    res.status(200).json({'user': 'New user added successfully1.'})
+                    res.status(200).send("New user added successfully.")
                 })
                 .catch(() =>
                 {
@@ -32,7 +32,8 @@ accountRoutes.route('/add').post(function (req, res)
             }
             else
             {
-                res.status(400).send("User already exists.")
+                res.status(400).send("User with that email already exists.")
+
             }
         }
     })
@@ -53,14 +54,17 @@ accountRoutes.route('/validate').post(function (req, res)
         {
             if (accounts != null)
             {
-                if(accounts.password = account.password)
-                {
-                    res.status(200).send("Validation successful.")
-                }
-                else
-                {
-                    res.status(200).send("Validation unsuccessful.")
-                }
+                accounts.comparePassword(account.password, function(err, isMatch) {
+                    if (err) throw err;
+                    if(isMatch)
+                    {
+                        res.status(200).send("Validation successful.")
+                    }
+                    else
+                    {
+                        res.status(200).send("Validation unsuccessful.")
+                    }
+                });
             }
             else
             {

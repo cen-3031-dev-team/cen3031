@@ -1,20 +1,21 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueAxios from 'vue-axios'
+import Axios from 'axios'
+import VueRouter from 'vue-router'
+import VueLodash from 'vue-lodash'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+// Vue Router
+Vue.use(VueRouter)
+Vue.use(VueLodash)
+Vue.use(VueAxios, Axios)
 
 // Multiselect
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-
-Vue.use(VueAxios, axios);
-
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 import HomeComponent from './components/HomeComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';

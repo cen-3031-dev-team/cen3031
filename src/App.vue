@@ -140,29 +140,45 @@ export default {
     }
   },
 
-  computed: {
-    hasTweets() {
-      return this.tweets != null
+    computed:
+    {
+        hasTweets()
+        {
+            return this.tweets != null
+        },
+
+        safeTweets()
+        {
+            if (this.hasTweets)
+            {
+                return this._.filter(this.tweets.statuses, function(tweet) {
+                    return tweet.possibly_sensitive == true
+                })
+            }
+            else
+            {
+                return null
+            }
+        },
     },
-  },
 
-  mounted() {
+    methods: 
+    {
+        // ...
+        getTweets()
+        {
+            const self = this
+            self.tweets = null
 
-  },
-
-  methods: {
-    // ...
-    getTweets() {
-      const self = this
-      self.tweets = null
-
-      // @TODO: make this go to the api correctly
-      this.$http.get('//localhost:4000/twitter/searchTweets').then(function(response) {
-        if (response.status == "200") {
-          self.tweets = response.data
-        }
-      })
-    },
-  }
+            // @TODO: make this go to the api correctly
+            this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
+            {
+                if (response.status == "200")
+                {
+                    self.tweets = response.data
+                }
+          })
+        },
+    }
 }
 </script>
