@@ -17,11 +17,9 @@
 
     <div class="container">
         <div class="row py-3">
-            <div class="col-md-2" id="searchtext">
+            <div class="col-md-12" id="searchtext">
                 Display the
-            </div>
 
-            <div class="col-md-1">
                 <multiselect
                     v-model="querytweets"
                     :options="numOfTweets"
@@ -30,17 +28,13 @@
                     :show-labels="false"
                     placeholder="#"
                 ></multiselect>
-            </div>
-            <div class="col-md-2" id="searchtext">
+
                 most popular Tweets about
-            </div>
-            <div class="col-md-2">
+
                 <input type="text" v-model="querystring" placeholder="Search..">
-            </div>
-            <div class="col-md-2" id="searchtext">
+
                 in the last
-            </div>
-            <div class="col-md-1">
+
                 <multiselect
                     v-model="querydays"
                     :options="numOfDays"
@@ -49,8 +43,7 @@
                     :show-labels="false"
                     placeholder="#"
                 ></multiselect>
-            </div>
-            <div class="col-md-2" id="searchtext">
+
                 Days
             </div>
         </div>
@@ -85,6 +78,15 @@
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .5s
+}
+
+.multiselect {
+    display: inline-block;
+    width: auto;
+}
+
+.queryFilters * {
+    display: inline-block;
 }
 
 /* making it so we can change all the headers to the same font */
