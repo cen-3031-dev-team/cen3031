@@ -1,24 +1,6 @@
 <template>
 <div class="row justify-content-md-center">
-    <div class="col-md-6">
-        <ul class="nav py-3">
-            <li class="nav-item">
-                <button class="btn btn-outline-primary mr-1 waves-effect">
-                    <a @click="action = 'Validate'">Log in</a>
-                </button>
-            </li>
-
-            <li class="nav-item">
-                <button class="btn btn-outline-primary mr-1 waves-effect">
-                    <a @click="action = 'Create'">Register</a>
-                </button>
-            </li>
-        </ul>
-    </div>
-
-    <div class="w-100"></div>
-
-    <form class="forms justify-content-md-center col-md-6" @submit.prevent="accountAction">
+    <form class="forms justify-content-md-center col-md-6 mt-3" @submit.prevent="accountAction">
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -38,11 +20,19 @@
         </div>
 
         <div class="row" v-show="action === 'Create'">
-            <div class="col-md-6">
+            <div class="col">
                 <div class="form-group">
-                    <label class="form-text">Confirm password:</label>
+                    <label class="form-text">Confirm Password:</label>
                     <input type="password" class="form-control" v-model="account.confirmPassword">
                 </div>
+            </div>
+        </div>
+
+        <div class="row py-3">
+            <div class="col">
+                <a href="#" class="login-switch"
+                    @click.prevent='switchLoginMethod'
+                >{{ loginMessage }}</a>
             </div>
         </div>
 
@@ -72,6 +62,13 @@
     font-size:18px;
     font-family:inherit;
 }
+
+.login-switch {
+    color: #615C5C;
+}
+.login-switch:hover {
+    color: #2F2C2C;
+}
 </style>
 
 <script>
@@ -79,21 +76,37 @@ export default {
     data() {
         return {
             account: {},
-            action: 'Validate'
+            action: 'Login'
         }
+    },
+
+    computed: {
+        loginMessage()
+        {
+            return this.action === 'Login'
+                ? 'Don\'t have an account yet? Click here to sign up for a trial.'
+                : 'Already have an account? Click here to log in.'
+        },
     },
 
     methods: {
         accountAction()
         {
-            if (this.action === 'Validate')
+            if (this.action === 'Login')
             {
-                this.validateAccount()
+                this.LoginAccount()
             }
             else if (this.action === 'Create')
             {
                 this.createAccount()
             }
+        },
+
+        switchLoginMethod()
+        {
+            this.action = (this.action === 'Login')
+                ? 'Create'
+                : 'Login'
         },
 
         createAccount()
@@ -107,9 +120,9 @@ export default {
             })
         },
 
-        validateAccount()
+        LoginAccount()
         {
-            let uri = 'http://localhost:4000/accounts/validate'
+            let uri = 'http://localhost:4000/accounts/Login'
 
             this.axios.post(uri, this.account).then(() => {
                 this.$router.push({name: 'account'})
