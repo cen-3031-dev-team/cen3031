@@ -1,6 +1,6 @@
 <template>
 <div class="tweet-container">
-    <div class="row tweet" v-for="tweet in tweets">
+    <div class="tweet" v-for="tweet in tweets">
         <div class="col-md-12">
             <img :src="tweet.user.profile_image_url">
             <span> @{{ tweet.user.screen_name }}: {{ tweet.full_text }} </span>
