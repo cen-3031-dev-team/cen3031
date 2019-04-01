@@ -1,14 +1,19 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router'
 import VueAxios from 'vue-axios'
 import Axios from 'axios'
+import VueRouter from 'vue-router'
 import VueLodash from 'vue-lodash'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+// Vue Router
+Vue.use(VueRouter)
 Vue.use(VueLodash)
 Vue.use(VueAxios, Axios)
-Vue.use(VueRouter)
+
+// Multiselect
+import Multiselect from 'vue-multiselect'
+Vue.component('multiselect', Multiselect)
 
 Vue.config.productionTip = false
 
