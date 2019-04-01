@@ -23,7 +23,7 @@
                     Display the
 
                     <multiselect
-                        v-model="querytweets"
+                        v-model="queryCount"
                         :options="numOfTweets"
                         :searchable="false"
                         :close-on-select="true"
@@ -33,12 +33,12 @@
 
                     most popular Tweets about
 
-                    <input type="text" v-model="querystring" placeholder="Search..">
+                    <input type="text" v-model="queryString" placeholder="Search..">
 
                     in the last
 
                     <multiselect
-                        v-model="querydays"
+                        v-model="queryDays"
                         :options="numOfDays"
                         :searchable="false"
                         :close-on-select="true"
@@ -113,16 +113,16 @@ export default
     data()
     {
         return {
-            tweets:         null,
-            account:        {},
-            displayLogin:   true,
-            displayRegister:false,
+            tweets:             null,
+            account:            {},
+            displayLogin:       true,
+            displayRegister:    false,
 
-            querydays: 5,
-            querytweets: 10,
-            querystring: 'banana',
-            numOfDays: ['1', '2', '3', '4', '5', '6', '7'],
-            numOfTweets: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+            queryDays:          5,
+            queryCount:         5,
+            queryString:        'banana',
+            numOfDays:          ['1', '2', '3', '4', '5', '6', '7'],
+            numOfTweets:        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
         }
     },
 
@@ -137,7 +137,7 @@ export default
         {
             if (this.hasTweets)
             {
-                return _.filter(this.tweets.statuses, function(tweet) {
+                return this._.filter(this.tweets.statuses, function(tweet) {
                     return tweet.possibly_sensitive === false || tweet.possibly_sensitive === undefined
                 })
             }
@@ -163,9 +163,9 @@ export default
             // @TODO: make this go to the api correctly
             let options = {
                 params: {
-                    since: self.querydays,
-                    queryString: self.querystring,
-                    count: self.querytweets,
+                    since: self.queryDays,
+                    queryString: self.queryString,
+                    count: self.queryCount,
                 }
             }
             this.$http.get('//localhost:4000/twitter/searchTweets', options).then(function (response)
