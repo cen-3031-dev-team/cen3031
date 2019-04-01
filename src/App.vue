@@ -85,6 +85,13 @@
     width: auto;
 }
 
+.multiselect__option--highlight {
+    background-color: lightblue;
+}
+.multiselect__option--selected.multiselect__option--highlight {
+    background-color: blue;
+}
+
 .queryFilters * {
     display: inline-block;
 }
