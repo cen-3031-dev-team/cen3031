@@ -7,128 +7,129 @@
 
 <script>
 import Highcharts from 'highcharts'
-    export default {
-        props: 
+
+export default {
+    props: 
+    {
+        tweets:
         {
-            tweets:
-            {
-                default: [],
-            },
+            default: [],
         },
+    },
 
-        data()
+    data()
+    {
+        return {
+            // ...
+        }
+    },
+
+    created()
+    {
+
+    },
+
+    mounted()
+    {
+        this.setupGraph()
+    },
+
+    methods:
+    {
+        setupGraph()
         {
-            return {
-                // ...
-            }
-        },
 
-        created()
-        {
+            const self = this
 
-        },
+            Highcharts.chart('container', {
 
-        mounted()
-        {
-            this.setupGraph()
-        },
+                chart: {
+                    scrollablePlotArea: {
+                        minWidth: 700
+                    }
+                },
 
-        methods:
-        {
-            setupGraph()
-            {
+                title: {
+                    text: 'Daily Twitter metrics for _ over _ days'
+                },
 
-                const self = this
+                subtitle: {
+                    text: 'Source: www.twitter.com'
+                },
 
-                Highcharts.chart('container', {
-
-                    chart: {
-                        scrollablePlotArea: {
-                            minWidth: 700
-                        }
-                    },
-
+                xAxis: {
+                    type: 'datetime',
                     title: {
-                        text: 'Daily Twitter metrics for _ over _ days'
+                        text: 'Past _ days'
                     },
-
-                    subtitle: {
-                        text: 'Source: www.twitter.com'
-                    },
-
-                    xAxis: {
-                        type: 'datetime',
-                        title: {
-                            text: 'Past _ days'
-                        },
-                        tickInterval: 24 * 3600 * 1000, // one day
-                        tickWidth: 0,
-                        gridLineWidth: 1,
-                        labels: {
-                            align: 'left',
-                            x: 3,
-                            y: -3
-                        }
-                    },
-
-                    yAxis: [{ 
-                        title: {
-                            text: 'Number of tweets, likes, retweets'
-                        },
-                        labels: {
-                            align: 'left',
-                            x: 3,
-                            y: 16,
-                            format: '{value:.,0f}'
-                        },
-                        showFirstLabel: false
-                      
-                    }],
-
-                    legend: {
+                    tickInterval: 24 * 3600 * 1000, // one day
+                    tickWidth: 0,
+                    gridLineWidth: 1,
+                    labels: {
                         align: 'left',
-                        verticalAlign: 'top',
-                        borderWidth: 0
-                    },
+                        x: 3,
+                        y: -3
+                    }
+                },
 
-                    tooltip: {
-                        shared: true,
-                        crosshairs: true
+                yAxis: [{ 
+                    title: {
+                        text: 'Number of tweets, likes, retweets'
                     },
-
-                    plotOptions: {
-                        lineWidth: 4,
-                        marker: {
-                            radius: 4
-                        }
+                    labels: {
+                        align: 'left',
+                        x: 3,
+                        y: 16,
+                        format: '{value:.,0f}'
                     },
+                    showFirstLabel: false
+                  
+                }],
 
-                    series: [{
-                        name: 'Tweets',
-                        data: [
-                            [Date.UTC(2019, 1, 1), 39],
-                            [Date.UTC(2019, 1, 2), 71],
-                            [Date.UTC(2019, 1, 3), 106]
-                        ]
-                    }, {
-                        name: 'Likes',
-                        color: '#FF0000',
-                        data: [
-                            [Date.UTC(2019, 1, 1), 22],
-                            [Date.UTC(2019, 1, 2), 30],
-                            [Date.UTC(2019, 1, 3), 25]
-                        ]
-                    }, {
-                        name: 'Retweets',
-                        color: 'green',
-                        data: [
-                            [Date.UTC(2019, 1, 1), 14],
-                            [Date.UTC(2019, 1, 2), 45],
-                            [Date.UTC(2019, 1, 3), 2]
-                        ]
-                    }]
-                });
-            },
+                legend: {
+                    align: 'left',
+                    verticalAlign: 'top',
+                    borderWidth: 0
+                },
+
+                tooltip: {
+                    shared: true,
+                    crosshairs: true
+                },
+
+                plotOptions: {
+                    lineWidth: 4,
+                    marker: {
+                        radius: 4
+                    }
+                },
+
+                series: [{
+                    name: 'Tweets',
+                    data: [
+                        [Date.UTC(2019, 1, 1), 39],
+                        [Date.UTC(2019, 1, 2), 71],
+                        [Date.UTC(2019, 1, 3), 106]
+                    ]
+                }, {
+                    name: 'Likes',
+                    color: '#FF0000',
+                    data: [
+                        [Date.UTC(2019, 1, 1), 22],
+                        [Date.UTC(2019, 1, 2), 30],
+                        [Date.UTC(2019, 1, 3), 25]
+                    ]
+                }, {
+                    name: 'Retweets',
+                    color: 'green',
+                    data: [
+                        [Date.UTC(2019, 1, 1), 14],
+                        [Date.UTC(2019, 1, 2), 45],
+                        [Date.UTC(2019, 1, 3), 2]
+                    ]
+                }]
+            });
         },
-    }
+    },
+}
 </script>

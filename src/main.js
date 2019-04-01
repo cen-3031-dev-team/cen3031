@@ -7,53 +7,38 @@ import VueLodash from 'vue-lodash'
 import Highcharts from 'highcharts'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-// Vue Router
+
 Vue.use(VueRouter)
 Vue.use(VueLodash)
 Vue.use(VueAxios, Axios)
 Vue.use(Highcharts)
 
+Vue.config.productionTip = false
+
+// Page Components
+import CreateComponent from './components/CreateComponent.vue'
+
+// Global Components
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
-Vue.config.productionTip = false
-
-import HomeComponent from './components/HomeComponent.vue';
-import CreateComponent from './components/CreateComponent.vue';
-import IndexComponent from './components/IndexComponent.vue';
-import EditComponent from './components/EditComponent.vue';
-import GraphsComponent from './components/GraphsComponent.vue';
-
+// Custom Components
+import GraphsComponent from './components/GraphsComponent.vue'
 Vue.component('graph', GraphsComponent)
 
 const routes = [
-  {
-      name: 'login',
-      path: '/login',
-      component: HomeComponent
-  },
-  {
-      name: 'create',
-      path: '/create',
-      component: CreateComponent
-  },
-  {
-      name: 'posts',
-      path: '/posts',
-      component: IndexComponent
-  },
-  {
-      name: 'edit',
-      path: '/edit/:id',
-      component: EditComponent
-  },
-  {
-      name: 'graphs',
-      path: 'graphs',
-      component: GraphsComponent
-  }
-];
+    {
+        name: 'login',
+        path: '/login',
+        component: CreateComponent
+    },
+    {
+        name: 'graphs',
+        path: '/graphs',
+        component: GraphsComponent
+    }
+]
 
-const router = new VueRouter({ mode: 'history', routes: routes});
+const router = new VueRouter({ mode: 'history', routes: routes})
 
-new Vue(Vue.util.extend({ router }, App)).$mount('#app');
+new Vue(Vue.util.extend({ router }, App)).$mount('#app')

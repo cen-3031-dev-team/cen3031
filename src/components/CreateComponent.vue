@@ -1,44 +1,51 @@
 <template>
-  <div>
+<div>
     <h1>Make a New Account</h1>
     <form @submit.prevent="addAccount">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Email:</label>
-            <input type="text" class="form-control" v-model="account.email">
-          </div>
-        </div>
-        </div>
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-               <label>Password:</label>
-            <input type="text" class="form-control" v-model="account.password">
-          </div>
-          </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" v-model="account.email">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="text" class="form-control" v-model="account.password">
+                </div>
+            </div>
         </div><br />
+
         <div class="form-group">
-          <button class="btn btn-primary">Create</button>
+            <button class="btn btn-primary">Create</button>
         </div>
     </form>
-  </div>
+</div>
 </template>
 
 <script>
-    export default {
-        data(){
+export default {
+    data() {
         return {
-          account:{}
+            account: {}
         }
     },
+
     methods: {
-      addAccount(){
-        let uri = 'http://localhost:4000/accounts/add';
-        this.axios.post(uri, this.account).then(() => {
-          this.$router.push({name: 'account'});
-        });
-      }
+        addAccount()
+        {
+            let uri = 'http://localhost:4000/accounts/add'
+
+            this.axios.post(uri, this.account).then(() => {
+                this.$router.push({
+                    name: 'account'
+                })
+            })
+        }
     }
-  }
+}
 </script>
