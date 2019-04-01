@@ -24,7 +24,10 @@ Vue.component('multiselect', Multiselect)
 
 // Custom Components
 import GraphsComponent from './components/GraphsComponent.vue'
+import TweetsListComponent from './components/TweetsListComponent.vue'
+
 Vue.component('graph', GraphsComponent)
+Vue.component('tweets-list', TweetsListComponent)
 
 const routes = [
     {
