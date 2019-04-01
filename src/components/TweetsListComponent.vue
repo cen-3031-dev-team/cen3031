@@ -35,6 +35,7 @@
   align-items: center;
   color: black;
   background-color: lightblue;
+  border-radius: 15px;
 }
 
 .tweet img {
