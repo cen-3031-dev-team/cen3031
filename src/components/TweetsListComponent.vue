@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="tweet-container">
     <div class="row tweet" v-for="tweet in tweets">
         <div class="col-md-12">
             <img :src="tweet.user.profile_image_url">
@@ -14,16 +14,9 @@
 </template>
 
 <style>
-#searchtext {
-  text-align: center;
-  font-size: 20px;
-}
-#searchbutton {
-  text-align: center;
-}
-#tweetrow {
-  margin-bottom: 10px;
-  background-color: lightblue;
+.tweet-container {
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 .tweet {

@@ -18,8 +18,8 @@
         </transition>
 
         <div class="container">
-            <div class="row py-3">
-                <div class="col-md-12" id="searchtext">
+            <div class="row text-center py-3">
+                <div class="col">
                     Display the
 
                     <multiselect
@@ -48,10 +48,10 @@
 
                     Days
                 </div>
-            </div>
 
-            <div class="row py-3">
-                <div class="col-md-12" id='searchtext'>
+                <div class="w-100"></div>
+
+                <div class="col mt-3">
                     <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
                 </div>
             </div>
