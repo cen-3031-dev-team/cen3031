@@ -12,22 +12,24 @@ twitterRoutes.route('/searchTweets').get(function (req, res)
         consumer_secret:      process.env.CONSUMER_SECRET,
         access_token:         process.env.ACCESS_TOKEN,
         access_token_secret:  process.env.ACCESS_TOKEN_SECRET,
-        timeout_ms:           60 * 1000,  // optional HTTP request timeout to apply to all requests.
-        strictSSL:            true,     // optional - requires SSL certificates to be valid.
+        timeout_ms:           60 * 1000,  // optional HTTP request timeout
+        strictSSL:            false,     // optional - requires valid SSL certificates
     })
     
     //Create q parameter
-   // var q = req.body.q + 'since:' +  moment().subtract(req.body.since, 'days').calendar().format(YYYY-MM-Do);
-    var query = req.body.query + " since:" +  moment().subtract(req.body.since, 'days').format('YYYY-MM-DD');
-    // search twitter for all tweets containing the word 'banana' since 2019-03-25
-    
+    var query = req.query.queryString + " since:" +  moment().subtract(req.query.since, 'days').format('YYYY-MM-DD');
+
+    let options = {
+        q: query,
+        count: parseInt(req.query.count),
+        tweet_mode: "extended"
+    }
+
     T.get(
         'search/tweets',
-        { q: query, count: req.body.count, tweet_mode: "extended"},
+        options,
         function(err, data, response)
         {
-            console.log(data)
-    
             res.status(200).json(data)
         }
     )

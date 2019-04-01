@@ -173,7 +173,14 @@ export default
             self.tweets = null
 
             // @TODO: make this go to the api correctly
-            this.$http.get('//localhost:4000/twitter/searchTweets').then(function (response)
+            let options = {
+                params: {
+                    since: self.querydays,
+                    queryString: self.querystring,
+                    count: self.querytweets,
+                }
+            }
+            this.$http.get('//localhost:4000/twitter/searchTweets', options).then(function (response)
             {
                 if (response.status == "200")
                 {
