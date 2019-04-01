@@ -13,12 +13,20 @@
       <li class="nav-item">
         <router-link to="/posts" class="nav-link">Posts</router-link>
       </li>
+
+      <li class="nav-item">
+          <router-link to="/graphs" class="nav-link">Graphs</router-link>
+      </li>
     </ul>
   </nav><br />
 
   <transition name="fade">
     <router-view></router-view>
   </transition>
+
+  <graph
+      :tweets="safeTweets"
+  ></graph>
 
   <div class="row">
     <div class="col-md-2" id="searchtext">

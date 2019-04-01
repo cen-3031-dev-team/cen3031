@@ -4,14 +4,15 @@ import VueAxios from 'vue-axios'
 import Axios from 'axios'
 import VueRouter from 'vue-router'
 import VueLodash from 'vue-lodash'
+import Highcharts from 'highcharts'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Vue Router
 Vue.use(VueRouter)
 Vue.use(VueLodash)
 Vue.use(VueAxios, Axios)
+Vue.use(Highcharts)
 
-// Multiselect
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
@@ -21,6 +22,9 @@ import HomeComponent from './components/HomeComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
+import GraphsComponent from './components/GraphsComponent.vue';
+
+Vue.component('graph', GraphsComponent)
 
 const routes = [
   {
@@ -42,6 +46,11 @@ const routes = [
       name: 'edit',
       path: '/edit/:id',
       component: EditComponent
+  },
+  {
+      name: 'graphs',
+      path: 'graphs',
+      component: GraphsComponent
   }
 ];
 
