@@ -95,28 +95,6 @@
 .queryFilters * {
     display: inline-block;
 }
-
-/* making it so we can change all the headers to the same font */
-.headers {
-    margin-top:5%;
-    font-size:45px;
-}
-.forms {
-    margin-top:5%;
-    margin: auto;
-    border-width: medium;
-    border: 1px dashed #000;
-    padding: 10px;
-    width:60%;
-}
-.form-control {
-    margin-left: 50%;
-}
-.form-text {
-    margin-left:50%;
-    font-size:18px;
-    font-family:inherit;
-}
 </style>
 
 <script>
