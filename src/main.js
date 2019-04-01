@@ -16,7 +16,7 @@ Vue.use(Highcharts)
 Vue.config.productionTip = false
 
 // Page Components
-import CreateComponent from './components/CreateComponent.vue'
+import LoginComponent from './components/LoginComponent.vue'
 
 // Global Components
 import Multiselect from 'vue-multiselect'
@@ -33,7 +33,7 @@ const routes = [
     {
         name: 'login',
         path: '/login',
-        component: CreateComponent
+        component: LoginComponent
     },
     {
         name: 'graphs',
