@@ -1,12 +1,14 @@
 <template>
 <div>
-    <div class="row" v-for="tweet in tweets">
-        <div class="tweet">
+    <div class="row tweet" v-for="tweet in tweets">
+        <div class="col-md-12">
             <img :src="tweet.user.profile_image_url">
             <span> @{{ tweet.user.screen_name }}: {{ tweet.full_text }} </span>
         </div>
 
-        <span id="tweetleft"> Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}</span>
+        <div class="col-md-12 tag">
+            Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}
+        </div>
     </div>
 </div>
 </template>
@@ -28,10 +30,22 @@
   margin-bottom: 10px;
   width: 100%;
   display: flex;
-  height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   align-items: center;
   color: black;
   background-color: lightblue;
+}
+
+.tweet img {
+  width: 80px;
+  margin-left: 10px;
+  border-radius: 50%;
+  padding-right: 10px;
+}
+
+.tweet .counts {
+    display: block;
 }
 
 .name {
@@ -41,13 +55,6 @@
 
 .tag {
   color: grey;
-}
-
-.tweet img {
-  width: 80px;
-  margin-left: 10px;
-  border-radius: 50%;
-  padding-right: 10px;
 }
 </style>
 
