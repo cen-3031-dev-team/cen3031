@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -11,62 +11,65 @@
         </ul>
     </nav>
 
-    <transition name="fade">
-        <router-view></router-view>
-    </transition>
 
-    <div class="container">
-        <div class="row py-3">
-            <div class="col-md-12" id="searchtext">
-                Display the
+        <div class="container-fluid">
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
 
-                <multiselect
-                    v-model="querytweets"
-                    :options="numOfTweets"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-md-12" id="searchtext">
+                    Display the
 
-                most popular Tweets about
+                    <multiselect
+                        v-model="querytweets"
+                        :options="numOfTweets"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
 
-                <input type="text" v-model="querystring" placeholder="Search..">
+                    most popular Tweets about
 
-                in the last
+                    <input type="text" v-model="querystring" placeholder="Search..">
 
-                <multiselect
-                    v-model="querydays"
-                    :options="numOfDays"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
+                    in the last
 
-                Days
+                    <multiselect
+                        v-model="querydays"
+                        :options="numOfDays"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
+
+                    Days
+                </div>
+            </div>
+
+            <div class="row py-3">
+                <div class="col-md-12" id='searchtext'>
+                    <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+                </div>
             </div>
         </div>
 
-        <div class="row py-3">
-            <div class="col-md-12" id='searchtext'>
-                <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
-            </div>
-        </div>
-    </div>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-md-6">
+                    <tweets-list v-if="hasTweets"
+                        :tweets="safeTweets"
+                    ></tweets-list>
+                </div>
 
-    <div class="container">
-        <div class="row py-3">
-            <div class="col-md-6">
-                <tweets-list v-if="hasTweets"
-                    :tweets="safeTweets"
-                ></tweets-list>
-            </div>
-
-            <div class="col-md-6">
-                <graph
-                    :tweets="safeTweets"
-                ></graph>
+                <div class="col-md-6">
+                    <graph
+                        :tweets="safeTweets"
+                    ></graph>
+                </div>
             </div>
         </div>
     </div>
