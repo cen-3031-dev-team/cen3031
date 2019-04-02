@@ -111,7 +111,7 @@ export default {
 
         createAccount()
         {
-            let uri = 'http://localhost:4000/accounts/add'
+            let uri = '/accounts/add'
 
             this.axios.post(uri, this.account).then(() => {
                 this.$router.push({
@@ -122,7 +122,7 @@ export default {
 
         LoginAccount()
         {
-            let uri = 'http://localhost:4000/accounts/Login'
+            let uri = '/accounts/Login'
 
             this.axios.post(uri, this.account).then(() => {
                 this.$router.push({name: 'account'})
