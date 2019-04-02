@@ -1,13 +1,15 @@
 <template>
 <div class="tweet-container">
-    <div class="tweet" v-for="tweet in tweets">
-        <div class="col-md-12">
-            <img :src="tweet.user.profile_image_url">
-            <span> @{{ tweet.user.screen_name }}: {{ tweet.full_text }} </span>
-        </div>
+    <div class="tweet container" v-for="tweet in tweets">
+        <div class="row">
+            <div class="col-md-12">
+                <img :src="tweet.user.profile_image_url">
+                <span> @{{ tweet.user.screen_name }}: {{ tweet.full_text }} </span>
+            </div>
 
-        <div class="col-md-12 tag">
-            Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}
+            <div class="col-md-12 tag">
+                Likes: {{tweet.favorite_count}} Retweets: {{tweet.retweet_count}}
+            </div>
         </div>
     </div>
 </div>
