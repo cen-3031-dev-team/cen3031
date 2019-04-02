@@ -168,7 +168,7 @@ export default
                     count: self.queryCount,
                 }
             }
-            this.$http.get('//localhost:4000/twitter/searchTweets', options).then(function (response)
+            this.$http.get('/twitter/searchTweets', options).then(function (response)
             {
                 if (response.status == "200")
                 {
