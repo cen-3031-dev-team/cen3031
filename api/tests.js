@@ -33,7 +33,7 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        res.body.should.be.equal('New user added successfully.');
+        res.text.should.equal('New user added successfully.');
         done();
       });
   });
@@ -43,7 +43,7 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        res.body.should.be.equal('Validation successful.');
+        res.text.should.equal('Validation successful.');
         done();
       });
   });

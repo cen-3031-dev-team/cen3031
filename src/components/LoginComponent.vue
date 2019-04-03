@@ -122,7 +122,7 @@ export default {
 
         LoginAccount()
         {
-            let uri = 'http://localhost:4000/accounts/Login'
+            let uri = 'http://localhost:4000/accounts/validate'
 
             this.axios.post(uri, this.account).then(() => {
                 this.$router.push({name: 'account'})
