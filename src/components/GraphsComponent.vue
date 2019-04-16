@@ -1,10 +1,16 @@
-
-<script src = "https://code.highcharts.com/modules/data.js"></script> 
+<style>
+    #graphContainer {
+        min-width: 300px;
+        height: 400px;
+        margin: 0 auto;
+    }
+</style>
 
 <template>
-  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> 
+    <div id="graphContainer"></div> 
 </template>
 
+<script src = "https://code.highcharts.com/modules/data.js"></script>
 <script>
 import Highcharts from 'highcharts'
 
@@ -41,7 +47,7 @@ export default {
 
             const self = this
 
-            Highcharts.chart('container', {
+            Highcharts.chart('graphContainer', {
 
                 chart: {
                     scrollablePlotArea: {
@@ -128,7 +134,7 @@ export default {
                         [Date.UTC(2019, 1, 3), 2]
                     ]
                 }]
-            });
+            })
         },
     },
 }

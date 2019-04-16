@@ -12,64 +12,60 @@
     </nav>
 
 
-        <div class="container-fluid">
+    <div class="container-fluid">
         <transition name="fade">
             <router-view></router-view>
         </transition>
 
-        <div class="container">
-            <div class="row text-center py-3">
-                <div class="col">
-                    Display the
+        <div class="row text-center py-3">
+            <div class="col">
+                Display the
 
-                    <multiselect
-                        v-model="queryCount"
-                        :options="numOfTweets"
-                        :searchable="false"
-                        :close-on-select="true"
-                        :show-labels="false"
-                        placeholder="#"
-                    ></multiselect>
+                <multiselect
+                    v-model="queryCount"
+                    :options="numOfTweets"
+                    :searchable="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="#"
+                ></multiselect>
 
-                    most popular Tweets about
+                most popular Tweets about
 
-                    <input type="text" v-model="queryString" placeholder="Search..">
+                <input type="text" v-model="queryString" placeholder="Search..">
 
-                    in the last
+                in the last
 
-                    <multiselect
-                        v-model="queryDays"
-                        :options="numOfDays"
-                        :searchable="false"
-                        :close-on-select="true"
-                        :show-labels="false"
-                        placeholder="#"
-                    ></multiselect>
+                <multiselect
+                    v-model="queryDays"
+                    :options="numOfDays"
+                    :searchable="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="#"
+                ></multiselect>
 
-                    Days
-                </div>
+                Days
+            </div>
 
-                <div class="w-100"></div>
+            <div class="w-100"></div>
 
-                <div class="col mt-3">
-                    <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
-                </div>
+            <div class="col mt-3">
+                <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row py-3">
-                <div class="col-md-6">
-                    <tweets-list v-if="hasTweets"
-                        :tweets="safeTweets"
-                    ></tweets-list>
-                </div>
+        <div class="row py-3">
+            <div class="col-lg-6">
+                <tweets-list v-if="hasTweets"
+                    :tweets="safeTweets"
+                ></tweets-list>
+            </div>
 
-                <div class="col-md-6">
-                    <graph
-                        :tweets="safeTweets"
-                    ></graph>
-                </div>
+            <div class="col-lg-6">
+                <graph
+                    :tweets="safeTweets"
+                ></graph>
             </div>
         </div>
     </div>
@@ -160,7 +156,6 @@ export default
             const self = this
             self.tweets = null
 
-            // @TODO: make this go to the api correctly
             let options = {
                 params: {
                     since: self.queryDays,
@@ -168,7 +163,7 @@ export default
                     count: self.queryCount,
                 }
             }
-            this.$http.get('//localhost:4000/twitter/searchTweets', options).then(function (response)
+            this.$http.get('/twitter/searchTweets', options).then(function (response)
             {
                 if (response.status == "200")
                 {

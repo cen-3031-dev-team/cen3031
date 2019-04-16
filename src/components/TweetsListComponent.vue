@@ -22,22 +22,22 @@
 }
 
 .tweet {
-  margin-bottom: 10px;
-  width: 100%;
-  display: flex;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  align-items: center;
-  color: black;
-  background-color: lightblue;
-  border-radius: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    color: black;
+    background-color: lightblue;
+    border-radius: 15px;
 }
 
 .tweet img {
-  width: 80px;
-  margin-left: 10px;
-  border-radius: 50%;
-  padding-right: 10px;
+    width: 80px;
+    margin-left: 10px;
+    border-radius: 50%;
+    padding-right: 10px;
 }
 
 .tweet .counts {
@@ -45,12 +45,12 @@
 }
 
 .name {
-  color: black;
-  font-weight: bold;
+    color: black;
+    font-weight: bold;
 }
 
 .tag {
-  color: grey;
+    color: grey;
 }
 </style>
 
