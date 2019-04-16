@@ -18,17 +18,35 @@ twitterRoutes.route('/trendingTweets').get(function(req, res)
     })
 
     let options = {
-        id: 1
+        
     }
-
     T.get(
-        'trends/place',
+        'trends/available',
         options,
         function(err, data, response)
         {
-            res.status(200).json(data)
+            for (var i = 0; i < data.length; i++)
+            {
+                if (data[i].name == req.query.queryString)
+                {
+                    let options = {
+                        id: data[i].woeid
+                    }
+            
+                T.get(
+                    'trends/place',
+                    options,
+                    function(err, data, response)
+                    {
+                        res.status(200).json(data)
+                    }
+                )
+                }
+            }
         }
     )
+    
+    
 })
 
 // Defined get data(index or listing) route
