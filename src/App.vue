@@ -12,7 +12,7 @@
     </nav>
 
 
-        <div class="container-fluid">
+    <div class="container-fluid">
         <transition name="fade">
             <router-view></router-view>
         </transition>
