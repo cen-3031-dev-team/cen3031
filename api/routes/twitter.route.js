@@ -45,7 +45,7 @@ twitterRoutes.route('/searchTweets').get(function (req, res)
     
     //Create q parameter
     var query = req.query.queryString + " since:" +  moment().subtract(req.query.since, 'days').format('YYYY-MM-DD')
-                + " -filter:retweets";
+                + " -filter:retweets"
 
     let options = {
         q: query,
