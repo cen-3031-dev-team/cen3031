@@ -27,12 +27,12 @@ accountRoutes.route('/add').post(function (req, res)
                 })
                 .catch(() =>
                 {
-                    res.status(400).send("Unable to save to database.")
+                    res.status(200).send("Unable to save to database.")
                 })
             }
             else
             {
-                res.status(400).send("User with that email already exists.")
+                res.status(200).send("User with that email already exists.")
 
             }
         }
@@ -68,7 +68,7 @@ accountRoutes.route('/validate').post(function (req, res)
             }
             else
             {
-                res.status(400).send("User doesn't exist.")
+                res.status(200).send("User doesn't exist.")
             }
         }
     })

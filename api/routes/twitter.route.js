@@ -25,6 +25,7 @@ twitterRoutes.route('/trendingTweets').get(function(req, res)
         options,
         function(err, data, response)
         {
+            let sent = false;
             for (var i = 0; i < data.length; i++)
             {
                 if (data[i].name == req.query.queryString)
@@ -38,10 +39,24 @@ twitterRoutes.route('/trendingTweets').get(function(req, res)
                     options,
                     function(err, data, response)
                     {
-                        res.status(200).json(data)
+                        if(err)
+                            res.status(400)
+                        else{
+                            res.status(200).json(data);
+                        }
                     }
                 )
+                sent = true;
+
                 }
+                if(sent)
+                {
+                    break;
+                }
+            }
+            if(!sent)
+            {
+                res.status(200).send("No Location Found");
             }
         }
     )
@@ -68,7 +83,8 @@ twitterRoutes.route('/searchTweets').get(function (req, res)
     let options = {
         q: query,
         count: parseInt(req.query.count),
-        tweet_mode: "extended"
+        tweet_mode: "extended",
+        result_type: "popular"
     }
 
     T.get(
