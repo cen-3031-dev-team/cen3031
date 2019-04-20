@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const config = require('./api/DB.js')
 const path = require('path')
 const serveStatic = require('serve-static')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 4000
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(

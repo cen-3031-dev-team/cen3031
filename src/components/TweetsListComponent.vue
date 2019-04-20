@@ -17,7 +17,6 @@
 
 <style>
 .tweet-container {
-    max-height: 600px;
     overflow-y: visible;
 }
 
