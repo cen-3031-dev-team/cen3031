@@ -2,12 +2,10 @@ var should = require('should'),
     request = require('supertest');
     express = require('./app.js');
 
-/* Global variables */
-var query = {queryString : "Bananna", since : 3, count : 5};
+var query = {queryString : "Banana", since : 3, count : 5};
 var trendQuery = {queryString : "Canada"};
+var trendQueryFalse = {queryString : "asifdvse"};
 
-
-/* Unit tests for testing server side routes for the listings API */
 describe('Listings CRUD tests', function() {
 
   this.timeout(10000);
@@ -34,7 +32,17 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
-        //console.log(res.body);
+        res.body.statuses.length.should.equal(5);
+        done();
+      });
+  });
+  it('should be able to get a specific number of tweets', function(done) {
+    
+    agent.get('/twitter/searchTweets').query(query)
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        should.exist(res);
         res.body.statuses.length.should.equal(5);
         done();
       });
@@ -46,6 +54,17 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res);
+        done();
+      });
+  });
+  it('should not return tweets from a location that does not exist', function(done) {
+    
+    agent.get('/twitter/trendingTweets').query(trendQueryFalse)
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        should.exist(res);
+        res.text.should.equal("No Location Found");
         done();
       });
   });

@@ -51,12 +51,12 @@ export default {
 
                 chart: {
                     scrollablePlotArea: {
-                        minWidth: 700
+                        minWidth: 1100
                     }
                 },
 
                 title: {
-                    text: 'Daily Twitter metrics for _ over _ days'
+                    text: 'Daily Twitter Metrics for Tweets, Likes, and Retweets Over Time'
                 },
 
                 subtitle: {
@@ -66,7 +66,7 @@ export default {
                 xAxis: {
                     type: 'datetime',
                     title: {
-                        text: 'Past _ days'
+                        text: 'Time(days)'
                     },
                     tickInterval: 24 * 3600 * 1000, // one day
                     tickWidth: 0,
@@ -80,7 +80,7 @@ export default {
 
                 yAxis: [{ 
                     title: {
-                        text: 'Number of tweets, likes, retweets'
+                        text: 'Number of Tweets, Likes, Retweets'
                     },
                     labels: {
                         align: 'left',

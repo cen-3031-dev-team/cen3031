@@ -2,7 +2,6 @@ var should = require('should'),
     request = require('supertest');
     express = require('./app.js');
 
-/* Global variables */
 var user;
 
 function makeid(length) {
@@ -15,7 +14,6 @@ function makeid(length) {
     return text;
   }
 
-/* Unit tests for testing server side routes for the listings API */
 describe('Listings CRUD tests', function() {
 
   this.timeout(10000);
