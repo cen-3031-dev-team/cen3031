@@ -151,6 +151,25 @@ export default
 
     methods:
     {
+        getTrends()
+        {
+            const self = this
+            self.tweets = null
+
+            let options = {
+                params: {
+                    queryString: self.queryString,
+                }
+            }
+            this.$http.get('/twitter/trendingTweets', options).then(function (response)
+            {
+                if (response.status == "200")
+                {
+                    self.tweets = response.data
+                }
+          })
+        },
+
         getTweets()
         {
             const self = this

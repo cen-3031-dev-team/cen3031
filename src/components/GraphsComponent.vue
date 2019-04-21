@@ -50,9 +50,7 @@ export default {
             Highcharts.chart('graphContainer', {
 
                 chart: {
-                    scrollablePlotArea: {
-                        minWidth: 1100
-                    }
+                    width: 500
                 },
 
                 title: {
