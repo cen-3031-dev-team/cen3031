@@ -25,8 +25,26 @@
     </transition> -->
 
     <div class="container text-center">
-        <div class="row py-3">
+        <div class="row">
             <div class="col">
+                Search for tweets by
+                <multiselect
+                    v-model="queryType"
+                    :options="typeOptions"
+                    :searchable="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                ></multiselect>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div v-show="isLocationSearch" class="col">
+                Display the tweets from
+
+                <input type="text" v-model="queryString" placeholder="Search for a location..">
+            </div>
+
+            <div v-show="isTopicSearch" class="col">
                 Display the
 
                 <multiselect
@@ -143,7 +161,10 @@ export default
 
             queryDays:          5,
             queryCount:         5,
-            queryString:        'banana',
+            queryString:        'San Fransisco',
+            queryType:          'Location',
+
+            typeOptions:        ['Location', 'Topic'],
             numOfDays:          ['1', '2', '3', '4', '5', '6', '7'],
             numOfTweets:        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
         }
@@ -160,6 +181,16 @@ export default
         {
             return 'Tweets Over the Past ' + this.queryCount + ' Days'
         },
+
+        isLocationSearch()
+        {
+            return this.queryType === 'Location'
+        },
+
+        isTopicSearch()
+        {
+            return this.queryType === 'Topic'
+        },
     },
 
     created()
@@ -167,9 +198,26 @@ export default
         this.getTweets()
     },
 
+    watch:
+    {
+        queryType()
+        {
+            this.queryString = (this.isLocationSearch)
+                ? 'San Fransisco'
+                : 'Banana'
+        }
+    },
+
     methods:
     {
-        getTrends()
+        getTweets()
+        {
+            if (this.isLocationSearch) return this.getTopic()
+
+            if (this.isTopicSearch) return this.getTopic()
+        },
+
+        getLocation()
         {
             const self = this
             self.tweets = null
@@ -188,7 +236,7 @@ export default
           })
         },
 
-        getTweets()
+        getTopic()
         {
             const self = this
             self.tweets = null
