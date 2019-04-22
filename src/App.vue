@@ -105,6 +105,10 @@
                     >
                     </trends>
 
+                    <div v-else-if="noLocationsFound" class="text-center">
+                        No locations found.
+                    </div>
+
                     <div v-else class="text-center">
                         <i class="fa fa-circle-notch fa-spin"></i> Loading trending topics...
                     </div>
@@ -186,11 +190,15 @@ export default
         return {
             tweets:             null,
             trends:             [],
+
             account:            { email: null, },
+
             displayLogin:       true,
             displayRegister:    false,
             displayTweets:      true,
             displayTrends:      false,
+
+            noLocationsFound:   false,
 
             queryDays:          5,
             queryCount:         5,
@@ -309,7 +317,7 @@ export default
                     if (response.data === 'No Location Found')
                     {
                         self.locations = []
-                        self.noTopicsFound = []
+                        self.noLocationsFound = true
 
                         Swal.fire({
                             type: 'error',
