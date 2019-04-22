@@ -163,8 +163,8 @@ export default
 
             queryDays:          5,
             queryCount:         5,
-            queryString:        'San Fransisco',
-            queryType:          'Location',
+            queryString:        'banana',
+            queryType:          'Topic',
 
             typeOptions:        ['Location', 'Topic'],
             numOfDays:          ['1', '2', '3', '4', '5', '6', '7'],
@@ -227,7 +227,7 @@ export default
     {
         getTweets()
         {
-            if (this.isLocationSearch) return this.getTopic()
+            if (this.isLocationSearch) return this.getLocation()
 
             if (this.isTopicSearch) return this.getTopic()
         },
