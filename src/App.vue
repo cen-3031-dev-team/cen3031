@@ -58,13 +58,26 @@
         <div class="row py-3">
             <div class="col-lg-6">
                 <tweets-list v-if="hasTweets"
-                    :tweets="safeTweets"
+                    :tweets="tweets"
                 ></tweets-list>
             </div>
 
             <div class="col-lg-6">
                 <graph
-                    :tweets="safeTweets"
+                    type="bar"
+                    title="Individual Tweet Comparison"
+                    yAxisTitle="Count"
+                    :tweets="tweets"
+                    graphId="numTweetsGraoh"
+                    class="mb-5"
+                ></graph>
+
+                <graph
+                    type="line"
+                    :title="lineGraphTitle"
+                    yAxisTitle="Frequency"
+                    :tweets="tweets"
+                    graphId="tweetFrequencyGraph"
                 ></graph>
             </div>
         </div>
@@ -129,18 +142,9 @@ export default
             return this.tweets !== null
         },
 
-        safeTweets()
+        lineGraphTitle()
         {
-            if (this.hasTweets)
-            {
-                return this._.filter(this.tweets.statuses, function(tweet) {
-                    return tweet.possibly_sensitive === false || tweet.possibly_sensitive === undefined
-                })
-            }
-            else
-            {
-                return null
-            }
+            return 'Tweets Over the Past ' + this.queryCount + ' Days'
         },
     },
 
@@ -186,7 +190,7 @@ export default
             {
                 if (response.status == "200")
                 {
-                    self.tweets = response.data
+                    self.tweets = response.data.statuses
                 }
           })
         },
