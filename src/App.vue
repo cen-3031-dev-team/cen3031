@@ -183,7 +183,7 @@ export default
         navMessage()
         {
             return this.isLoggedIn
-                ? this.account.name
+                ? 'Logged in as ' + this.account.name
                 : 'Not logged in'
         },
 
