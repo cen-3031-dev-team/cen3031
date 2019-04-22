@@ -8,30 +8,22 @@
             <li class="nav-item">
                 <router-link to="/login" class="nav-link">Login</router-link>
             </li>
+            <li class="nav-item">
+                <router-link to="/graphs" class="nav-link">Graphs</router-link>
+            </li>
         </ul>
     </nav>
 
 
-    <div class="container-fluid">
-        <transition name="fade">
-            <router-view></router-view>
-        </transition>
-
         <div class="row text-center py-5">
             <div class="col">
-                <h1>Twitter Analytics</h1>
+                <h1 class="display-1">Twitter Analytics</h1>
             </div>
         </div>
 
-        <div class="row py-3">
-            <div class="col-lg-6">
-                <tweets-list v-if="hasTweets"
-                    :tweets="tweets"
-                ></tweets-list>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
+            <div class="container">
+            <form>
+                <div class="col">
                     Display the
                     <multiselect
                         v-model="queryCount"
@@ -43,14 +35,13 @@
                     ></multiselect>
                 </div>
 
-                <div class="row">
-                    most popular Tweets about
-                    <input type="text" v-model="queryString" placeholder="Search..">
+                <div class="col">
+                    <label for="input1">Most popular Tweets about</label>
+                    <input type="text" class="form-control" id="input1" v-model="queryString" placeholder="Search..">
                 </div>
 
-                <div class="row">
+                <div class="col">
                     in the last
-
                     <multiselect
                         v-model="queryDays"
                         :options="numOfDays"
@@ -59,13 +50,27 @@
                         :show-labels="false"
                         placeholder="#"
                     ></multiselect>
-
                     days
                 </div>
+            </form>
+   
 
                 <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
             </div>
+<div class="container-fluid">
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
+                        <div class="row py-3">
+            <div class="col-lg-6">
+                <tweets-list v-if="hasTweets"
+                    :tweets="tweets"
+                ></tweets-list>
+            </div>
         </div>
+
+        
+        
 
         <div class="row py-3">
             <div class="col-md-6">
