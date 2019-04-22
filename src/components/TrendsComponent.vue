@@ -2,12 +2,12 @@
 <div class="tweet-container">
     <div class="container">
         <div class="row">
-            <div v-for="location in locations"
+            <div v-for="trend in trends"
                 class="col-md-3"
-                :key="location.id">
-                <div class="row location-topic">
+                :key="trend.id">
+                <div class="row trends-topic">
                     <p>
-                        {{ location.name }}
+                        {{ trend.name }}
                     </p>
                 </div>
             </div>
@@ -17,7 +17,7 @@
 </template>
 
 <style>
-.location-topic {
+.trends-topic {
     margin-bottom: 10px;
     width: 100%;
     display: flex;
@@ -29,19 +29,19 @@
     border-radius: 15px;
 }
 
-.location-topic * {
+.trends-topic * {
     padding: 0;
     margin: 0;
 }
 
-.location-topic .tag {
+.trends-topic .tag {
     display: block;
 }
 </style>
 
 <script>
 export default {
-    props: ['locations'],
+    props: ['trends'],
 
     data() {
         return {

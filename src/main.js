@@ -22,12 +22,12 @@ Vue.component('multiselect', Multiselect)
 import GraphsComponent from './components/GraphsComponent.vue'
 import LoginComponent from './components/LoginComponent.vue'
 import TweetsListComponent from './components/TweetsListComponent.vue'
-import LocationsComponent from './components/LocationsComponent'
+import TrendsComponent from './components/TrendsComponent'
 
 Vue.component('graph', GraphsComponent)
 Vue.component('login', LoginComponent)
 Vue.component('tweets-list', TweetsListComponent)
-Vue.component('locations', LocationsComponent)
+Vue.component('Trends', TrendsComponent)
 
 const routes = [
     {
