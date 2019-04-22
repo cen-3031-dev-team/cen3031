@@ -14,18 +14,17 @@ Vue.use(Highcharts)
 
 Vue.config.productionTip = false
 
-// Page Components
-import LoginComponent from './components/LoginComponent.vue'
-
 // Global Components
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
 // Custom Components
 import GraphsComponent from './components/GraphsComponent.vue'
+import LoginComponent from './components/LoginComponent.vue'
 import TweetsListComponent from './components/TweetsListComponent.vue'
 
 Vue.component('graph', GraphsComponent)
+Vue.component('login', LoginComponent)
 Vue.component('tweets-list', TweetsListComponent)
 
 const routes = [

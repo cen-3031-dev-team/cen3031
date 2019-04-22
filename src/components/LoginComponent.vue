@@ -72,6 +72,8 @@
 </style>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
     data() {
         return {
@@ -111,21 +113,53 @@ export default {
 
         createAccount()
         {
+            const self = this
+
             let uri = '/accounts/add'
 
-            this.axios.post(uri, this.account).then(() => {
-                this.$router.push({
-                    name: 'account'
-                })
+            this.axios.post(uri, this.account).then(function(res) {
+                if (res.data === 'User with that email already exists.')
+                {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Email in use',
+                        text: 'There\'s already an account with that email address.',
+                    })
+                }
+
+                if (res.data === 'New user added successfully.')
+                {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Hooray!',
+                        text: 'Your account has been successfully created.',
+                    })
+
+                    self.$emit('loggedIn', self.account.email)
+                }
             })
         },
 
         LoginAccount()
         {
+            const self = this
+
             let uri = '/accounts/validate'
 
-            this.axios.post(uri, this.account).then(() => {
-                this.$router.push({name: 'account'})
+            this.axios.post(uri, this.account).then(function(res) {
+                if (res.data === 'Validation unsuccessful.')
+                {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong and we couldn\'t log you in. Are your credentials correct?',
+                    })
+                }
+
+                if (res.data === 'Validation successful.')
+                {
+                    self.$emit('loggedIn', self.account.email)
+                }
             })
         },
     }
