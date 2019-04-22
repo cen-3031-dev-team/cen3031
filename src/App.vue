@@ -85,6 +85,10 @@
                     <tweets-list v-if="hasTweets"
                         :tweets="tweets"
                     ></tweets-list>
+
+                    <div v-else class="text-center">
+                        <i class="fa fa-circle-notch fa-spin"></i> Loading tweets...
+                    </div>
                 </div>
             </div>
 
