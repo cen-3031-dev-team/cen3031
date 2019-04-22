@@ -100,10 +100,14 @@
                 <div v-if="displayLocations"
                     class="col"
                 >
-                    <locations v-if="hasLocations"
-                        :locations="locations"
+                    <trends v-if="hasTrends"
+                        :trends="trends"
                     >
-                    </locations>
+                    </trends>
+
+                    <div v-else-if="noLocationsFound" class="text-center">
+                        No locations found.
+                    </div>
 
                     <div v-else class="text-center">
                         <i class="fa fa-circle-notch fa-spin"></i> Loading trending topics...
@@ -170,6 +174,8 @@
 </style>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default
 {
     mixins: [],
@@ -183,12 +189,16 @@ export default
     {
         return {
             tweets:             null,
-            locations:          [],
+            trends:             [],
+
             account:            { email: null, },
+
             displayLogin:       true,
             displayRegister:    false,
             displayTweets:      true,
-            displayLocations:   false,
+            displayTrends:      false,
+
+            noLocationsFound:   false,
 
             queryDays:          5,
             queryCount:         5,
@@ -220,9 +230,9 @@ export default
             return this.tweets !== null
         },
 
-        hasLocations()
+        hasTrends()
         {
-            return this.locations.length > 0
+            return this.trends && this.trends.length > 0
         },
 
         lineGraphTitle()
@@ -292,7 +302,8 @@ export default
         getLocation()
         {
             const self = this
-            self.locationsRes = null
+            self.locations = []
+            self.noTopicsFound = false
 
             let options = {
                 params: {
@@ -303,9 +314,23 @@ export default
             {
                 if (response.status == "200")
                 {
-                    self.locations = response.data[0].trends
+                    if (response.data === 'No Location Found')
+                    {
+                        self.locations = []
+                        self.noLocationsFound = true
+
+                        Swal.fire({
+                            type: 'error',
+                            title: 'No Locations Found',
+                            text: 'Twitter was unable to find that location. Is your spelling correct?',
+                        })
+                    }
+                    else
+                    {
+                        self.trends = response.data[0].trends
+                    }
                 }
-          })
+            })
         },
 
         getTopic()
