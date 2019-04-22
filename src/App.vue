@@ -14,64 +14,64 @@
         </ul>
     </nav>
 
-
-        <div class="row text-center py-5">
-            <div class="col">
-                <h1 class="display-1">Twitter Analytics</h1>
-            </div>
+    <div class="row text-center py-5">
+        <div class="col">
+            <h1>Twitter Analytics</h1>
         </div>
+    </div>
 
-            <div class="container">
-            <form>
-                <div class="col">
-                    Display the
-                    <multiselect
-                        v-model="queryCount"
-                        :options="numOfTweets"
-                        :searchable="false"
-                        :close-on-select="true"
-                        :show-labels="false"
-                        placeholder="#"
-                    ></multiselect>
-                </div>
+    <transition name="fade">
+        <router-view></router-view>
+    </transition>
 
-                <div class="col">
-                    <label for="input1">Most popular Tweets about</label>
-                    <input type="text" class="form-control" id="input1" v-model="queryString" placeholder="Search..">
-                </div>
+    <div class="container text-center">
+        <div class="row py-3">
+            <div class="col">
+                Display the
 
-                <div class="col">
-                    in the last
-                    <multiselect
-                        v-model="queryDays"
-                        :options="numOfDays"
-                        :searchable="false"
-                        :close-on-select="true"
-                        :show-labels="false"
-                        placeholder="#"
-                    ></multiselect>
-                    days
-                </div>
-            </form>
-   
+                <multiselect
+                    v-model="queryCount"
+                    :options="numOfTweets"
+                    :searchable="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="#"
+                ></multiselect>
 
+                most popular Tweets about
+
+                <input type="text" v-model="queryString" placeholder="Search..">
+
+                in the last
+
+                <multiselect
+                    v-model="queryDays"
+                    :options="numOfDays"
+                    :searchable="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="#"
+                ></multiselect>
+
+                Days
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col mt-3">
                 <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
             </div>
-            
-<div class="container">
-        <transition name="fade">
-            <router-view></router-view>
-        </transition>
-                        <div class="row">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
             <div class="col">
                 <tweets-list v-if="hasTweets"
                     :tweets="tweets"
                 ></tweets-list>
             </div>
         </div>
-
-        
-        
 
         <div class="row py-3">
             <div class="col-md-6">
