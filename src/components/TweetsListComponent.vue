@@ -1,6 +1,6 @@
 <template>
 <div class="tweet-container">
-    <div class="tweet container" v-for="tweet in tweets">
+    <div class="tweet container" v-for="tweet in tweets" :key="tweet.id">
         <div class="row">
             <div class="col-md-12">
                 <img :src="tweet.user.profile_image_url">
@@ -55,7 +55,7 @@
 
 <script>
 export default {
-    props: 
+    props:
     {
         tweets:
         {
