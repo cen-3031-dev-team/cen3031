@@ -28,7 +28,7 @@ twitterRoutes.route('/trendingTweets').get(function(req, res)
             let sent = false;
             for (var i = 0; i < data.length; i++)
             {
-                if (data[i].name == req.query.queryString)
+                if (data[i].name.toUpperCase() == req.query.queryString.toUpperCase())
                 {
                     let options = {
                         id: data[i].woeid

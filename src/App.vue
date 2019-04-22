@@ -7,10 +7,15 @@
                     {{ navMessage }}
                 </span>
             </li>
+            <li v-if="isLoggedIn" class="nav-item">
+                <span @click.prevent="logOut" class="nav-link">
+                    Log out
+                </span>
+            </li>
         </ul>
     </nav>
 
-    <div class="row text-center pt-4 pb-2">
+    <div class="container row text-center pt-4 pb-2">
         <div class="col">
             <h1>Twitter Analytics</h1>
         </div>
@@ -298,7 +303,12 @@ export default
         loggedIn(email)
         {
             this.account.email = email
-        }
+        },
+
+        logOut()
+        {
+            this.account.email = null
+        },
     }
 }
 </script>
