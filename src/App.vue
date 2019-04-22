@@ -2,7 +2,7 @@
 <div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
@@ -10,7 +10,7 @@
             </li>
             <li class="nav-item">
                 <router-link to="/graphs" class="nav-link">Graphs</router-link>
-            </li>
+            </li> -->
         </ul>
     </nav>
 
@@ -20,9 +20,9 @@
         </div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade">
         <router-view></router-view>
-    </transition>
+    </transition> -->
 
     <div class="container text-center">
         <div class="row py-3">
