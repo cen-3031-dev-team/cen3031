@@ -1,15 +1,19 @@
 <template>
 <div class="tweet-container">
-    <div class="tweet container" v-for="location in locations" :key="location.id">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <span>
-                    {{ location.name }}
-                </span>
-            </div>
+            <div v-for="location in locations"
+                class="col-md-3"
+                :key="location.id">
+                <div class="row location-topic">
+                    <p class="col-md-12">
+                        {{ location.name }}
+                    </p>
 
-            <div class="col-md-12 tag">
-                Count: {{ location.tweet_volume }}
+                    <p class="col-md-12 tag">
+                        Count: {{ location.tweet_volume }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -17,7 +21,26 @@
 </template>
 
 <style>
+.location-topic {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    margin: 10px 5px;
+    align-items: center;
+    color: black;
+    background-color: lightblue;
+    border-radius: 15px;
+}
 
+.location-topic * {
+    padding: 0;
+    margin: 0;
+}
+
+.location-topic .tag {
+    display: block;
+}
 </style>
 
 <script>

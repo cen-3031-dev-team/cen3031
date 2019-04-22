@@ -34,6 +34,7 @@
                         :searchable="false"
                         :close-on-select="true"
                         :show-labels="false"
+                        :allow-empty="false"
                     ></multiselect>
                 </div>
             </div>
@@ -204,8 +205,7 @@ export default
     {
         isLoggedIn()
         {
-            return true
-            // return this.account.email !== null
+            return this.account.email !== null
         },
 
         navMessage()
