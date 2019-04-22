@@ -194,7 +194,7 @@ export default
 
         lineGraphTitle()
         {
-            return 'Tweets Over the Past ' + this.queryCount + ' Days'
+            return 'Tweets Over the Past ' + this.queryDays + ' Days'
         },
 
         isLocationSearch()
