@@ -7,6 +7,11 @@
                     {{ navMessage }}
                 </span>
             </li>
+            <li v-if="isLoggedIn" class="nav-item">
+                <span @click.prevent="logOut" class="nav-link">
+                    Log out
+                </span>
+            </li>
         </ul>
     </nav>
 
@@ -298,7 +303,12 @@ export default
         loggedIn(email)
         {
             this.account.email = email
-        }
+        },
+
+        logOut()
+        {
+            this.account.email = null
+        },
     }
 }
 </script>
