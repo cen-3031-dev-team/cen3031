@@ -7,11 +7,11 @@ import VueLodash from 'vue-lodash'
 import Highcharts from 'highcharts'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-
 Vue.use(VueRouter)
 Vue.use(VueLodash)
 Vue.use(VueAxios, Axios)
 Vue.use(Highcharts)
+Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 

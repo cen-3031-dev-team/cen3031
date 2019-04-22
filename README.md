@@ -6,9 +6,14 @@ Live tracking of master branch available at https://safe-mesa-81333.herokuapp.co
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles for development
 ```
-npm run serve
+npm run dev
+```
+
+### Serve locally using nodemon and express
+```
+npm run start
 ```
 
 ### Compiles and minifies for production
