@@ -10,7 +10,7 @@
         </ul>
     </nav>
 
-    <div class="row text-center py-5">
+    <div class="row text-center pt-4 pb-2">
         <div class="col">
             <h1>Twitter Analytics</h1>
         </div>
@@ -20,7 +20,7 @@
         <router-view></router-view>
     </transition> -->
 
-    <div v-if="isLoggedIn">
+    <div v-show="isLoggedIn">
         <div class="container text-center">
             <div class="row">
                 <div class="col">
@@ -117,8 +117,11 @@
         </div>
     </div>
 
-    <div v-else>
-        <login></login>
+    <div v-show=" ! isLoggedIn ">
+        <login
+            @loggedIn="loggedIn"
+        >
+        </login>
     </div>
 </div>
 </template>
@@ -161,7 +164,7 @@ export default
     {
         return {
             tweets:             null,
-            account:            {},
+            account:            { email: null, },
             displayLogin:       true,
             displayRegister:    false,
 
@@ -180,14 +183,13 @@ export default
     {
         isLoggedIn()
         {
-            // ...
-            return true
+            return this.account.email !== null
         },
 
         navMessage()
         {
             return this.isLoggedIn
-                ? 'Logged in as ' + this.account.name
+                ? 'Logged in as ' + this.account.email
                 : 'Not logged in'
         },
 
@@ -224,7 +226,12 @@ export default
             this.queryString = (this.isLocationSearch)
                 ? 'San Fransisco'
                 : 'Banana'
-        }
+        },
+
+        'account.email'()
+        {
+            this.isLoggedIn = (this.account.email && this.account.email !== null)
+        },
     },
 
     methods:
@@ -287,6 +294,11 @@ export default
             this.displayLogin = false
             this.displayRegister = true
         },
+
+        loggedIn(email)
+        {
+            this.account.email = email
+        }
     }
 }
 </script>
