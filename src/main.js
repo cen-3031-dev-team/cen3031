@@ -11,7 +11,6 @@ Vue.use(VueRouter)
 Vue.use(VueLodash)
 Vue.use(VueAxios, Axios)
 Vue.use(Highcharts)
-Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 
