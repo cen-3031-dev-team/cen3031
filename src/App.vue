@@ -17,41 +17,9 @@
             <router-view></router-view>
         </transition>
 
-        <div class="row text-center py-3">
+        <div class="row text-center py-5">
             <div class="col">
-                Display the
-
-                <multiselect
-                    v-model="queryCount"
-                    :options="numOfTweets"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
-
-                most popular Tweets about
-
-                <input type="text" v-model="queryString" placeholder="Search..">
-
-                in the last
-
-                <multiselect
-                    v-model="queryDays"
-                    :options="numOfDays"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
-
-                Days
-            </div>
-
-            <div class="w-100"></div>
-
-            <div class="col mt-3">
-                <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+                <h1>Twitter Analytics</h1>
             </div>
         </div>
 
@@ -63,6 +31,44 @@
             </div>
 
             <div class="col-lg-6">
+                <div class="row">
+                    Display the
+                    <multiselect
+                        v-model="queryCount"
+                        :options="numOfTweets"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
+                </div>
+
+                <div class="row">
+                    most popular Tweets about
+                    <input type="text" v-model="queryString" placeholder="Search..">
+                </div>
+
+                <div class="row">
+                    in the last
+
+                    <multiselect
+                        v-model="queryDays"
+                        :options="numOfDays"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
+
+                    days
+                </div>
+
+                <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+            </div>
+        </div>
+
+        <div class="row py-3">
+            <div class="col-md-6">
                 <graph
                     type="bar"
                     title="Individual Tweet Comparison"
@@ -71,7 +77,9 @@
                     graphId="numTweetsGraoh"
                     class="mb-5"
                 ></graph>
+            </div>
 
+            <div class="col-md-6">
                 <graph
                     type="line"
                     :title="lineGraphTitle"
