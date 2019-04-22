@@ -224,7 +224,7 @@ export default
         queryType()
         {
             this.queryString = (this.isLocationSearch)
-                ? 'San Fransisco'
+                ? 'San Francisco'
                 : 'Banana'
         },
 
