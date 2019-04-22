@@ -6,12 +6,8 @@
                 class="col-md-3"
                 :key="location.id">
                 <div class="row location-topic">
-                    <p class="col-md-12">
+                    <p>
                         {{ location.name }}
-                    </p>
-
-                    <p class="col-md-12 tag">
-                        Count: {{ location.tweet_volume }}
                     </p>
                 </div>
             </div>
