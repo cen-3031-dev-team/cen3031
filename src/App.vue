@@ -15,9 +15,11 @@
         </ul>
     </nav>
 
-    <div class="container row text-center pt-4 pb-2">
-        <div class="col">
+    <div class="container text-center pt-4 pb-2">
+        <div class="row">
+            <div class="col">
             <h1>Twitter Analytics</h1>
+        </div>
         </div>
     </div>
 
