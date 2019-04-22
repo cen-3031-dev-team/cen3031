@@ -23,10 +23,6 @@
         </div>
     </div>
 
-    <!-- <transition name="fade">
-        <router-view></router-view>
-    </transition> -->
-
     <div v-show="isLoggedIn">
         <div class="container text-center">
             <div class="row">
@@ -81,20 +77,35 @@
                 <div class="w-100"></div>
 
                 <div class="col mt-3">
-                    <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+                    <button class="btn btn-primary" @click="getTweets">
+                        {{ searchMessage }}
+                    </button>
                 </div>
             </div>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col" v-if="displayTweets">
                     <tweets-list v-if="hasTweets"
                         :tweets="tweets"
                     ></tweets-list>
 
                     <div v-else class="text-center">
                         <i class="fa fa-circle-notch fa-spin"></i> Loading tweets...
+                    </div>
+                </div>
+
+                <div v-if="displayLocations"
+                    class="col"
+                >
+                    <locations v-if="hasLocations"
+                        :locations="locations"
+                    >
+                    </locations>
+
+                    <div v-else class="text-center">
+                        <i class="fa fa-circle-notch fa-spin"></i> Loading trending topics...
                     </div>
                 </div>
             </div>
@@ -171,9 +182,12 @@ export default
     {
         return {
             tweets:             null,
+            locations:          [],
             account:            { email: null, },
             displayLogin:       true,
             displayRegister:    false,
+            displayTweets:      true,
+            displayLocations:   false,
 
             queryDays:          5,
             queryCount:         5,
@@ -190,7 +204,8 @@ export default
     {
         isLoggedIn()
         {
-            return this.account.email !== null
+            return true
+            // return this.account.email !== null
         },
 
         navMessage()
@@ -203,6 +218,11 @@ export default
         hasTweets()
         {
             return this.tweets !== null
+        },
+
+        hasLocations()
+        {
+            return this.locations.length > 0
         },
 
         lineGraphTitle()
@@ -218,6 +238,13 @@ export default
         isTopicSearch()
         {
             return this.queryType === 'Topic'
+        },
+
+        searchMessage()
+        {
+            return this.isTopicSearch
+                ? 'Search for tweets!'
+                : 'Search for trending topics from this location!'
         },
     },
 
@@ -245,15 +272,27 @@ export default
     {
         getTweets()
         {
-            if (this.isLocationSearch) return this.getLocation()
+            if (this.isLocationSearch)
+            {
+                this.getLocation()
 
-            if (this.isTopicSearch) return this.getTopic()
+                this.displayLocations   = true
+                this.displayTweets      = false
+            }
+
+            if (this.isTopicSearch)
+            {
+                this.getTopic()
+
+                this.displayLocations   = false
+                this.displayTweets      = true
+            }
         },
 
         getLocation()
         {
             const self = this
-            self.tweets = null
+            self.locationsRes = null
 
             let options = {
                 params: {
@@ -264,7 +303,7 @@ export default
             {
                 if (response.status == "200")
                 {
-                    self.tweets = response.data
+                    self.locations = response.data[0].trends
                 }
           })
         },

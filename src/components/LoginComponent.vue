@@ -86,7 +86,7 @@ export default {
         loginMessage()
         {
             return this.action === 'Login'
-                ? 'Don\'t have an account yet? Click here to sign up for a trial.'
+                ? 'Don\'t have an account yet? Click here to sign up for an account.'
                 : 'Already have an account? Click here to log in.'
         },
     },
