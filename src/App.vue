@@ -57,12 +57,13 @@
 
                 <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
             </div>
-<div class="container-fluid">
+            
+<div class="container">
         <transition name="fade">
             <router-view></router-view>
         </transition>
-                        <div class="row py-3">
-            <div class="col-lg-6">
+                        <div class="row">
+            <div class="col">
                 <tweets-list v-if="hasTweets"
                     :tweets="tweets"
                 ></tweets-list>
