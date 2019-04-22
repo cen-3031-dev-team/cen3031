@@ -2,15 +2,11 @@
 <div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
-            <!-- <li class="nav-item">
-                <router-link to="/" class="nav-link">Home</router-link>
-            </li>
             <li class="nav-item">
-                <router-link to="/login" class="nav-link">Login</router-link>
+                <span @click.prevent="" class="nav-link">
+                    {{ navMessage }}
+                </span>
             </li>
-            <li class="nav-item">
-                <router-link to="/graphs" class="nav-link">Graphs</router-link>
-            </li> -->
         </ul>
     </nav>
 
@@ -24,95 +20,101 @@
         <router-view></router-view>
     </transition> -->
 
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                Search for tweets by
-                <multiselect
-                    v-model="queryType"
-                    :options="typeOptions"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                ></multiselect>
+    <div v-if="isLoggedIn">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    Search for tweets by
+                    <multiselect
+                        v-model="queryType"
+                        :options="typeOptions"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                    ></multiselect>
+                </div>
+            </div>
+            <div class="row py-3">
+                <div v-show="isLocationSearch" class="col">
+                    Display the tweets from
+
+                    <input type="text" v-model="queryString" placeholder="Search for a location..">
+                </div>
+
+                <div v-show="isTopicSearch" class="col">
+                    Display the
+
+                    <multiselect
+                        v-model="queryCount"
+                        :options="numOfTweets"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
+
+                    most popular Tweets about
+
+                    <input type="text" v-model="queryString" placeholder="Search..">
+
+                    in the last
+
+                    <multiselect
+                        v-model="queryDays"
+                        :options="numOfDays"
+                        :searchable="false"
+                        :close-on-select="true"
+                        :show-labels="false"
+                        placeholder="#"
+                    ></multiselect>
+
+                    Days
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col mt-3">
+                    <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+                </div>
             </div>
         </div>
-        <div class="row py-3">
-            <div v-show="isLocationSearch" class="col">
-                Display the tweets from
 
-                <input type="text" v-model="queryString" placeholder="Search for a location..">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <tweets-list v-if="hasTweets"
+                        :tweets="tweets"
+                    ></tweets-list>
+                </div>
             </div>
 
-            <div v-show="isTopicSearch" class="col">
-                Display the
+            <div class="row py-3">
+                <div class="col-md-6">
+                    <graph
+                        type="bar"
+                        title="Individual Tweet Comparison"
+                        yAxisTitle="Count"
+                        :tweets="tweets"
+                        graphId="numTweetsGraoh"
+                        class="mb-5"
+                    ></graph>
+                </div>
 
-                <multiselect
-                    v-model="queryCount"
-                    :options="numOfTweets"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
-
-                most popular Tweets about
-
-                <input type="text" v-model="queryString" placeholder="Search..">
-
-                in the last
-
-                <multiselect
-                    v-model="queryDays"
-                    :options="numOfDays"
-                    :searchable="false"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="#"
-                ></multiselect>
-
-                Days
-            </div>
-
-            <div class="w-100"></div>
-
-            <div class="col mt-3">
-                <button class="btn btn-primary" @click="getTweets">Search For Tweets!</button>
+                <div class="col-md-6">
+                    <graph
+                        type="line"
+                        :title="lineGraphTitle"
+                        yAxisTitle="Frequency"
+                        :tweets="tweets"
+                        graphId="tweetFrequencyGraph"
+                    ></graph>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <tweets-list v-if="hasTweets"
-                    :tweets="tweets"
-                ></tweets-list>
-            </div>
-        </div>
-
-        <div class="row py-3">
-            <div class="col-md-6">
-                <graph
-                    type="bar"
-                    title="Individual Tweet Comparison"
-                    yAxisTitle="Count"
-                    :tweets="tweets"
-                    graphId="numTweetsGraoh"
-                    class="mb-5"
-                ></graph>
-            </div>
-
-            <div class="col-md-6">
-                <graph
-                    type="line"
-                    :title="lineGraphTitle"
-                    yAxisTitle="Frequency"
-                    :tweets="tweets"
-                    graphId="tweetFrequencyGraph"
-                ></graph>
-            </div>
-        </div>
+    <div v-else>
+        <login></login>
     </div>
 </div>
 </template>
@@ -172,6 +174,19 @@ export default
 
     computed:
     {
+        isLoggedIn()
+        {
+            // ...
+            return true
+        },
+
+        navMessage()
+        {
+            return this.isLoggedIn
+                ? this.account.name
+                : 'Not logged in'
+        },
+
         hasTweets()
         {
             return this.tweets !== null
