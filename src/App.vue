@@ -115,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="row py-3">
+            <div class="row py-3" v-show="displayTweets">
                 <div class="col-md-6">
                     <graph
                         type="bar"
