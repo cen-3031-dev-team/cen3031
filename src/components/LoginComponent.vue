@@ -160,6 +160,15 @@ export default {
                 {
                     self.$emit('loggedIn', self.account.email)
                 }
+
+                if (res.data === "User doesn't exist.")
+                {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'OOps...',
+                        text: 'Account does not exist, please make an account to continue.',
+                    })
+                }
             })
         },
     }
