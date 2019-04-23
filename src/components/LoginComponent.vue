@@ -117,6 +117,28 @@ export default {
 
             let uri = '/accounts/add'
 
+            if (typeof this.account.email === 'undefined')
+            {
+                Swal.fire({
+                    type: 'error',
+                    title: 'No Email provided',
+                    text: 'Please ensure your email is not blank.',
+                })
+
+                return
+            }
+
+            if (this.account.password !== this.account.confirmPassword)
+            {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Password Mismatch',
+                    text: 'Please ensure the password fields match.',
+                })
+
+                return
+            }
+
             this.axios.post(uri, this.account).then(function(res) {
                 if (res.data === 'User with that email already exists.')
                 {
